@@ -1,0 +1,466 @@
+<div class="roundbox borderTopRound" style="margin-top:2em;font-size:0.8em;">
+ <div class="caption titled">
+  <span class="test">
+   2
+  </span>
+  <div class="top-links">
+  </div>
+ </div>
+ <div class="infoline tm_infoline">
+  <strong>
+   Time
+  </strong>
+  :
+  <span class="timeConsumed">
+   46
+  </span>
+  ms,
+  <strong>
+   memory
+  </strong>
+  :
+  <span class="memoryConsumed">
+   0
+  </span>
+  KB
+ </div>
+ <div class="infoline verdict_infoline">
+  <div class="verdict_type error">
+   Verdict:
+   <span class="verdict">
+    WRONG_ANSWER
+   </span>
+  </div>
+ </div>
+ <div class="file input-view">
+  <div class="name">
+   Input
+  </div>
+  <div class="text">
+   <pre class="input">5913
+1
+1
+2
+1 2
+2
+2 1
+3
+1 2 3
+3
+1 3 2
+3
+2 1 3
+3
+2 3 1
+3
+3 1 2
+3
+3 2 1
+4
+1 2 3 4
+4
+1 2 4 3
+4
+1 3 2 4
+4
+1 3 4 2
+4
+1 4 2 3
+4
+1 4 3 2
+4
+2 1 3 4
+4
+2 1 4 3
+4
+2 3 1 4
+4
+2 3 4 1
+4
+2 4 1 3
+4
+2 4 3 1
+4
+3 1 2 4
+4
+3 1 4 2
+4
+3 2 1 4
+4
+3 2 4 1
+4
+3 4 1 2
+4
+3 4 2 1
+4
+4 1 2 3
+4
+4 1 3 2
+4
+4 2 1 3
+4
+4 2 3 1
+4
+4 3 1 2
+4
+4 3 2 1
+5
+1 2 3 4 5
+5
+1 2 3 5 4
+5
+1 2 4 3 5
+5
+1 2 4 5 3
+5
+1 2 5 3 4
+5
+1 2 5 4 3
+5
+1 3 2 4 5
+5
+1 3 2 5 4
+5
+1 3 4 2 5
+5
+1 3 4 ...</pre>
+  </div>
+ </div>
+ <div class="file output-view">
+  <div class="name">
+   Participant's output
+  </div>
+  <div class="text">
+   <pre class="output">YES
+YES
+YES
+YES
+NO
+YES
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+YES
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO...</pre>
+  </div>
+ </div>
+ <div class="file answer-view">
+  <div class="name">
+   Jury's answer
+  </div>
+  <div class="text">
+   <pre class="answer">YES
+YES
+YES
+YES
+NO
+YES
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+YES
+YES
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+YES
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+NO...</pre>
+  </div>
+ </div>
+ <div class="file checker-comment-view">
+  <div class="name">
+   Checker comment
+  </div>
+  <div class="text">
+   <pre class="checkerComment">wrong answer expected YES, found NO [21st token]
+</pre>
+  </div>
+ </div>
+ <div class="file diagnostics-result-comment-view">
+  <div class="name">
+   Diagnostics
+  </div>
+  <div class="text">
+   <pre class="diagnostics">Diagnostics detected issues [cpp.clang++-c++20-diagnose]: =================================================================
+==5128==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x12e0019c at pc 0x008816b7 bp 0x10e4f974 sp 0x10e4f970
+READ of size 4 at 0x12e0019c thread T0
+==5128==WARNING: Failed to use and restart external symbolizer!
+    #0 0x8816b6 in main K:\codeforces71\122eca1b2c5b50763dd7d4a5f46124b2\compile-3c7e03eba514079f0b8d592d4d394bc4\p71.cpp:16
+    #1 0x8fbc81 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #2 0x757f67f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #3 0x77097f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #4 0x77097f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+0x12e0019c is located 0 bytes to the right of 12-byte region [0x12e00190,0x12e0019c)
+allocated by thread T0 here:
+    #0 0x8fa257 in operator new C:\src\llvm_package_1201-final\llvm-project\compiler-rt\lib\asan\asan_new_delete.cpp:99
+    #1 0x8a3cad in std::_Default_allocate_traits::_Allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:52
+    #2 0x8a3ae7 in std::_Allocate&lt;8,std::_Default_allocate_traits,0&gt; C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:201
+    #3 0x8bcdec in std::allocator&lt;int&gt;::allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:1036
+    #4 0x8bba90 in std::vector&lt;int,std::allocator&lt;int&gt; &gt;::_Buy C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:1986
+    #5 0x8833d8 in std::vector&lt;int,std::allocator&lt;int&gt; &gt;::vector C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:711
+    #6 0x8812ff in main K:\codeforces71\122eca1b2c5b50763dd7d4a5f46124b2\compile-3c7e03eba514079f0b8d592d4d394bc4\p71.cpp:10
+    #7 0x8fbc81 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #8 0x757f67f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #9 0x77097f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #10 0x77097f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow K:\codeforces71\122eca1b2c5b50763dd7d4a5f46124b2\compile-3c7e03eba514079f0b8d592d4d394bc4\p71.cpp:16 in main
+Shadow bytes around the buggy address:
+  0x325bffe0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x325bfff0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x325c0000: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x325c0010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x325c0020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=&gt;0x325c0030: fa fa 00[04]fa fa fd fd fa fa fd fa fa fa fd fa
+  0x325c0040: fa fa fd fa fa fa 00 fa fa fa 06 fa fa fa fd fa
+  0x325c0050: fa fa 05 fa fa fa 06 fa fa fa 01 fa fa fa fd fa
+  0x325c0060: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa
+  0x325c0070: fa fa 00 fa fa fa fd fa fa fa fd fa fa fa fd fa
+  0x325c0080: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==5128==ABORTING</pre>
+  </div>
+ </div>
+</div>
