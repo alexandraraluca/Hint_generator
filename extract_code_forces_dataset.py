@@ -5,6 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 import sys
 import time
 import random
@@ -86,10 +88,115 @@ def extract_submissions_from_html(html_file="problemset_page.html"):
     return submissions
 
 
+def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/verdict"):
+    """
+    Extrage si salveaza ultimul test failed pentru o submisie care nu are verdictul Accepted.
+    Face click pe butonul 'Click to see test details', asteapta incarcarea testelor,
+    si salveaza HTML-ul ultimului test care nu e OK.
+    
+    Args:
+        driver: Selenium WebDriver
+        submission_id: ID-ul submisiei
+        verdict_dir: Directorul unde se salveaza fisierele cu verdictele
+    
+    Returns:
+        True daca a reusit sa salveze, False altfel
+    """
+    try:
+        # Cream directorul daca nu exista
+        if not os.path.exists(verdict_dir):
+            os.makedirs(verdict_dir)
+            print(f"        Created verdict directory: {verdict_dir}")
+        
+        # Verificam daca fisierul deja exista
+        output_file = os.path.join(verdict_dir, f"submission_{submission_id}.html")
+        if os.path.exists(output_file):
+            print(f"        ⊙ Verdict already saved")
+            return True
+        
+        # Verificam verdictul in problemset_page.html (MAI INTAI, inainte de click)
+        with open("problemset_page.html", "r", encoding="utf-8") as f:
+            problemset_soup = BeautifulSoup(f.read(), "html.parser")
+        
+        # Cautam submisia dupa ID in fisierul problemset_page.html
+        submission_wrapper = problemset_soup.find("span", class_="submissionVerdictWrapper", attrs={"submissionid": submission_id})
+        
+        if submission_wrapper:
+            # Verificam daca are verdict-accepted (OK)
+            if submission_wrapper.find("span", class_="verdict-accepted"):
+                print(f"        ✓ Verdict: Accepted - skipping test extraction")
+                return False
+        
+        # IMPORTANT: Delay aleatoriu ÎNAINTE de a face click (2-7 minute pentru anti-Cloudflare)
+        delay_before_click = random.uniform(65, 120)
+        print(f"        ⏳ Verdict NOT Accepted - waiting {delay_before_click:.0f}s ({delay_before_click/60:.1f} min) before clicking...")
+        time.sleep(delay_before_click)
+        
+        # Daca nu e Accepted, cautam butonul pentru a vedea testele
+        try:
+            click_button = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "click-to-view-tests"))
+            )
+            
+            print(f"        🖱️  Clicking to view test details...")
+            driver.execute_script("arguments[0].click();", click_button)
+            
+            # Asteptam sa se incarce testele (cautam elemente cu clasa test result)
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "verdict"))
+            )
+            
+            # Delay mic pentru a se incarca complet toate testele
+            time.sleep(2)
+            
+            # Parsam HTML-ul actualizat
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            
+            # Gasim toate test box-urile
+            test_boxes = soup.find_all("div", class_="roundbox")
+            
+            # Cautam ultimul test care nu e OK/Accepted
+            last_failed_test = None
+            for box in reversed(test_boxes):  # parcurgem de la sfarsit
+                verdict_elem = box.find("span", class_="verdict")
+                if verdict_elem:
+                    verdict_text = verdict_elem.get_text(strip=True)
+                    # Daca nu e OK/Accepted, salvam acest test
+                    if "ok" not in verdict_text.lower() and "accepted" not in verdict_text.lower():
+                        last_failed_test = box
+                        break
+            
+            if last_failed_test:
+                # Salvam HTML-ul ultimului test failed
+                with open(output_file, "w", encoding="utf-8") as f:
+                    f.write(str(last_failed_test.prettify()))
+                
+                verdict_text = last_failed_test.find("span", class_="verdict").get_text(strip=True)
+                print(f"        ✓ Saved last failed test (Verdict: {verdict_text})")
+                
+                # IMPORTANT: Delay aleatoriu DUPĂ salvarea testului (anti-Cloudflare)
+                delay_after_save = random.uniform(30, 65)
+                print(f"        ⏳ Waiting {delay_after_save:.0f}s ({delay_after_save/60:.1f} min) after test extraction...")
+                time.sleep(delay_after_save)
+                
+                return True
+            else:
+                print(f"        ⚠️  No failed tests found")
+                return False
+                
+        except Exception as e:
+            print(f"        ⚠️  Could not extract tests: {str(e)}")
+            return False
+            
+    except Exception as e:
+        print(f"        ✗ Error in extract_and_save_failed_test: {str(e)}")
+        return False
+
+
 def save_all_submissions(submissions, output_dir="results/submission_pages", 
                         min_delay=25, max_delay=45, batch_size=8, 
                         long_pause_min=120, long_pause_max=300,
-                        change_useragent=True, debug_port_start=9195,
+                        change_useragent=True, debug_port_start=9308,
                         chrome_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
                         user_data_dir="C:\\chrome_debug_temp"):
     """
@@ -146,7 +253,54 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
         # Skip daca fisierul exista deja
         if os.path.exists(output_file):
             print(f"[{i+1}/{total}] ✓ Skipping {submission_id} (already exists)")
+            print(f"    📊 Checking for failed tests...")
+
+            verdict_file = os.path.join("results/verdict", f"submission_{submission_id}.html")
+            if os.path.exists(verdict_file):
+                print(f"    ⊙ Verdict already saved - skipping test extraction")
+                skipped += 1
+                continue
+            
+            # TREBUIE sa navigam la pagina submisiei pentru a putea da click pe buton
+            try:
+                # Verificam verdictul in problemset_page.html (MAI INTAI, inainte de click)
+                with open("problemset_page.html", "r", encoding="utf-8") as f:
+                    problemset_soup = BeautifulSoup(f.read(), "html.parser")
+                submission_wrapper = problemset_soup.find("span", class_="submissionVerdictWrapper", attrs={"submissionid": submission_id})
+                if submission_wrapper:
+                    # Verificam daca are verdict-accepted (OK)
+                    if submission_wrapper.find("span", class_="verdict-accepted"):
+                        print(f"        ✓ Verdict: Accepted - skipping test extraction")
+                        skipped += 1
+                        continue
+                driver.get(url)
+                WebDriverWait(driver, 15).until(
+                    lambda d: d.execute_script("return document.readyState") == "complete"
+                )
+                time.sleep(random.uniform(1, 2))
+                extract_and_save_failed_test(driver, submission_id, verdict_dir="results/verdict")
+            except Exception as e:
+                print(f"    ⚠️  Error navigating to submission: {str(e)}")
+            
             skipped += 1
+            
+            # IMPORTANT: Delay aleatoriu și pentru submisiile existente (anti-Cloudflare)
+            delay = random.uniform(min_delay, max_delay)
+            print(f"    ⏳ Waiting {delay:.1f}s before next request...")
+            time.sleep(delay)
+            
+            # Pauza lunga dupa fiecare batch (inclusiv pentru cele skipped)
+            total_processed = processed + skipped
+            if total_processed > 0 and total_processed % batch_size == 0 and i < total - 1:
+                if not change_useragent:
+                    long_pause = random.uniform(long_pause_min, long_pause_max)
+                    print(f"\n{'─'*60}")
+                    print(f"🛑 BATCH PAUSE after {total_processed} submissions ({processed} new, {skipped} skipped)")
+                    print(f"   Progress: {i+1}/{total} ({(i+1)/total*100:.1f}%)")
+                    print(f"   Taking a long break: {long_pause:.0f}s ({long_pause/60:.1f} minutes)")
+                    print(f"{'─'*60}\n")
+                    time.sleep(long_pause)
+            
             continue
         
         print(f"[{i+1}/{total}] → Fetching submission {submission_id}")
@@ -160,7 +314,7 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
             WebDriverWait(driver, 15).until(
                 lambda d: d.execute_script("return document.readyState") == "complete"
             )
-            
+
             # Small random delay pentru a simula citirea paginii
             time.sleep(random.uniform(1, 3))
             
@@ -170,6 +324,10 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
             
             print(f"    ✓ Saved successfully")
             processed += 1
+            
+            # Incercam sa extragem si salvam ultimul test failed (daca nu e Accepted)
+            # print(f"    📊 Checking for failed tests...")
+            # extract_and_save_failed_test(driver, submission_id, verdict_dir="results/verdict")
             
             # Delay variabil pentru a evita pattern-uri predictibile
             delay = random.uniform(min_delay, max_delay)
@@ -266,7 +424,7 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
 if __name__ == "__main__":
     try:
         # Configurare
-        DEBUG_PORT_START = 9195  # Portul initial
+        DEBUG_PORT_START = 9308  # Portul initial
         CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
         USER_DATA_DIR = "C:\\chrome_debug_temp"
         
@@ -301,16 +459,17 @@ if __name__ == "__main__":
         print("\n" + "=" * 60)
         print("STEP 3: Processing submissions (NO User-Agent rotation)")
         print("=" * 60)
-        print("\nUsing SAME browser with long pauses - safer for Cloudflare!")
-        print("Long pause of 2-5 minutes after every 8 submissions.\n")
+        print("\nUsing SAME browser with VERY LONG pauses - safer for Cloudflare!")
+        print("Random delay of 2-7 minutes between EACH request!\n")
         
         # Procesam TOATE submisiile cu strategii anti-Cloudflare
         # MODIFIED: change_useragent=False pentru a evita blocarea Cloudflare
+        # DELAY-URI MARI: 2-7 minute între fiecare request!
         save_all_submissions(
             submissions,
             output_dir="results/submission_pages",
-            min_delay=20,                # minim 20 secunde intre requests
-            max_delay=50,                # maxim 50 secunde intre requests  
+            min_delay=80,               # minim 2 minute (120 secunde) intre requests
+            max_delay=120,               # maxim 4 minute (240 secunde) intre requests  
             batch_size=8,                # pauza lunga la fiecare 8 submisii
             long_pause_min=180,          # pauza de 3 minute
             long_pause_max=360,          # pauza de 6 minute
