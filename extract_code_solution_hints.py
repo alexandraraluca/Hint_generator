@@ -37,7 +37,7 @@ def setup_driver(debug_port=9305):
         return None
 
 
-def random_delay(min_sec=120, max_sec=420, message="Waiting"):
+def random_delay(min_sec=120, max_sec=220, message="Waiting"):
     """Asteapta un timp aleatoriu intre min_sec si max_sec (default: 2-7 minute)."""
     delay = random.uniform(min_sec, max_sec)
     print(f"    ⏳ {message}: {delay:.0f}s ({delay/60:.1f} minutes)")
@@ -121,11 +121,14 @@ def extract_tutorial_content(driver, problem_code):
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
         
-        # Salvam pagina tutorial in fisierul tutorial.html
-        with open(f"tutorial.html", "w", encoding="utf-8") as f:
+        # # Salvam pagina tutorial in fisierul tutorial.html
+        # with open(f"tutorial.html", "w", encoding="utf-8") as f:
+        #     f.write(driver.page_source)
+
+        # salveaza pagina fiecarui tutorial astfel: tutorial_{problem_code}.html in folderul tutorial_pages_saved
+        os.makedirs("tutorial_pages_saved", exist_ok=True)
+        with open(f"tutorial_pages_saved/tutorial_{problem_code}.html", "w", encoding="utf-8") as f:
             f.write(driver.page_source)
-        
-        
         
     except TimeoutException:
         print(f"        ⚠️ Timeout loading tutorial page")
