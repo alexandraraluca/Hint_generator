@@ -7,6 +7,7 @@ import os
 import json
 import time
 import random
+import traceback
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -219,8 +220,77 @@ def extract_hints_from_html(soup, problem_code=None):
         return None
 
 
-def extract_code_from_html(soup, problem_code=None):
-    """Extrage CODUL din HTML-ul tutorialului, specific problemei (dupa linia cu problemei)."""
+def extract_code_from_submission_url(driver, submission_url):
+    """
+    Extrage codul din pagina unei submission pe Codeforces folosind Selenium (Chrome real).
+    IMPORTANT: Folosim Selenium in loc de requests pentru a evita HTTP 403 Forbidden!
+    
+    Args:
+        driver: Selenium WebDriver (Chrome real browser)
+        submission_url: URL-ul submission-ului (de exemplu: https://codeforces.com/contest/2157/submission/350380442)
+    
+    Returns:
+        Codul din submission sau None daca nu se reuseste
+    """
+    try:
+        print(f"                🌐 Fetching code from submission: {submission_url}")
+        
+        # Adauga delay pentru a evita rate limiting
+        time.sleep(random.uniform(90, 240))
+        
+        # Navigam la pagina submission folosind Selenium Driver (Chrome real)
+        # Asta evita HTTP 403 Forbidden!
+        driver.get(submission_url)
+        
+        # Asteptam sa se incarce pagina
+        WebDriverWait(driver, 15).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+        
+        # Parsam HTML-ul
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+        
+        # Cauta codul in <pre id="program-source-text"> (formatare moderna Codeforces)
+        program_source = soup.find("pre", id="program-source-text")
+        if program_source:
+            code_text = program_source.get_text(strip=True)
+            if code_text and len(code_text) > 30:
+                print(f"                ✓ Extracted {len(code_text)} chars of code from submission")
+                return code_text
+        
+        # Fallback: Cauta orice <pre> care arata a fi cod
+        pre_blocks = soup.find_all("pre")
+        for pre_block in pre_blocks:
+            code_text = pre_block.get_text(strip=True)
+            if code_text and (
+                "#include" in code_text or 
+                "int main" in code_text or 
+                "void solve" in code_text or
+                code_text.count('{') > 2
+            ):
+                if len(code_text) > 30:
+                    print(f"                ✓ Extracted {len(code_text)} chars of code from submission (fallback)")
+                    return code_text
+        
+        print(f"                ⚠️ Could not find code block in submission page")
+        return None
+        
+    except TimeoutException:
+        print(f"                ⚠️ Timeout fetching submission")
+        return None
+    except Exception as e:
+        print(f"                ⚠️ Error extracting code from submission: {str(e)}")
+        return None
+
+
+def extract_code_from_html(soup, problem_code=None, driver=None):
+    """Extrage CODUL din HTML-ul tutorialului, specific problemei (dupa linia cu problemei).
+    
+    Args:
+        soup: BeautifulSoup object cu HTML-ul
+        problem_code: Codul problemei pentru izolare sectiune
+        driver: Optional Selenium WebDriver pentru a fetch submission-urile (evita 403 Forbidden!)
+    """
     try:
         # Daca avem problem_code, incearcam sa izolam sectiunea problemei
         if problem_code:
@@ -249,10 +319,19 @@ def extract_code_from_html(soup, problem_code=None):
             
             # Verifica daca linkul este o submission (si nu e comentariu)
             if href and "/submission/" in href and "/contest/" in href:
-                # Returneaza linkul complet
+                # Construim URL complet si extragem codul
                 if href.startswith('/'):
                     href = f"https://codeforces.com{href}"
-                return href
+                
+                # Extragem codul din pagina submission DOAR daca avem driver (Chrome real)
+                if driver:
+                    code = extract_code_from_submission_url(driver, href)
+                    if code:
+                        return code
+                else:
+                    # Fara driver, nu putem fetch submission (ar primi 403 Forbidden)
+                    print(f"                ⚠️ Cannot fetch submission without Selenium driver: {href}")
+                # Daca nu am gasit codul, continua sa cauta in pagina actuala
         
         # PRIORITATE 3: Cauta pentru spoilers cu "Code" in titlu care contain cod
         spoilers = soup.find_all("div", class_="spoiler")
@@ -378,7 +457,7 @@ def extract_tutorial_content(driver, problem_code):
         driver.get(tutorial_url)
         
         # Delay dupa navigare
-        random_delay(60, 180, "After navigating to Tutorial")
+        random_delay(90, 240, "After navigating to Tutorial")
         
         # Asteptam sa se incarce pagina
         WebDriverWait(driver, 15).until(
@@ -389,7 +468,8 @@ def extract_tutorial_content(driver, problem_code):
         tutorial_soup = BeautifulSoup(driver.page_source, "html.parser")
         
         # Extragem cele 3 componente (specifice acestei probleme)
-        tutorial_data['code'] = extract_code_from_html(tutorial_soup, problem_code)
+        # PASS DRIVER pentru a putea fetch submission-urile fara 403 Forbidden!
+        tutorial_data['code'] = extract_code_from_html(tutorial_soup, problem_code, driver=driver)
         tutorial_data['solution'] = extract_solution_from_html(tutorial_soup, problem_code)
         tutorial_data['hints'] = extract_hints_from_html(tutorial_soup, problem_code)
         
@@ -511,7 +591,7 @@ def process_saved_tutorials(problems_dict, tutorial_folder="tutorial_pages_saved
 
 
 def process_all_problems(driver, problems_dict, output_file="code_solution_hints.json", 
-                        min_delay=60, max_delay=180):
+                        min_delay=90, max_delay=240):
     """
     Proceseaza toate problemele si salveaza rezultatele in JSON.
     
@@ -536,6 +616,7 @@ def process_all_problems(driver, problems_dict, output_file="code_solution_hints
     print(f"\n{'='*60}")
     print(f"Starting to process {total} problems")
     print(f"Delay: {min_delay}-{max_delay}s ({min_delay/60:.1f}-{max_delay/60:.1f} minutes)")
+    print(f"IMPORTANT: Long delays (1.5-4 min) to avoid Cloudflare blocking!")
     print(f"{'='*60}\n")
     
     for i, (problem_code, problem_info) in enumerate(problems_dict.items()):
@@ -571,7 +652,7 @@ def process_all_problems(driver, problems_dict, output_file="code_solution_hints
             else:
                 print(f"    ⚠️ Could not extract statement")
             
-            # Delay inainte de a cauta Tutorial
+            # Delay inainte de a cauta Tutorial (1.5-4 minute)
             random_delay(min_delay, max_delay, "Before checking for Tutorial")
             
             # Incercam sa extragem tutorial-ul
@@ -593,7 +674,7 @@ def process_all_problems(driver, problems_dict, output_file="code_solution_hints
             
             print(f"    ✅ Saved to {output_file} ({processed}/{total} completed)")
             
-            # Delay mare inaintede urmatoarea problema
+            # Delay mare (1.5-4 min) inainte de urmatoarea problema
             if i < total - 1:  # Nu facem delay dupa ultima problema
                 random_delay(min_delay, max_delay, "Before next problem")
             
@@ -618,7 +699,7 @@ def process_all_problems(driver, problems_dict, output_file="code_solution_hints
 if __name__ == "__main__":
     try:
         # Configurare
-        DEBUG_PORT = 9205
+        DEBUG_PORT = 9321
         CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
         USER_DATA_DIR = "C:\\chrome_debug_temp"
         OUTPUT_FILE = "code_solution_hints.json"
@@ -665,8 +746,8 @@ if __name__ == "__main__":
                 driver,
                 problems_dict,
                 output_file=OUTPUT_FILE,
-                min_delay=30,    # 1 minut
-                max_delay=120    # 3 minute
+                min_delay=90,    # 1.5 minute
+                max_delay=240    # 4 minute
             )
             
             # Cleanup
