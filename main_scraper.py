@@ -48,7 +48,7 @@ USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
 ]
 
-def setup_driver(debug_port=9123):
+def setup_driver(debug_port=9206):
     """
     Conecteaza la un browser Chrome existent prin debugger.
     
@@ -107,7 +107,7 @@ def extract_submissions_from_html(html_file="problemset_page.html"):
     return submissions
 
 
-def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/verdict"):
+def extract_and_save_failed_test(driver, submission_id, submission_url, problemset_file_path, verdict_dir="results/verdict"):
     """
     Extrage si salveaza ultimul test failed pentru o submisie care nu are verdictul Accepted.
     Face click pe butonul 'Click to see test details', asteapta incarcarea testelor,
@@ -116,6 +116,8 @@ def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/ver
     Args:
         driver: Selenium WebDriver
         submission_id: ID-ul submisiei
+        submission_url: URL-ul submisiei
+        problemset_file_path: Path-ul fisierului problemset din care se verifica verdictul
         verdict_dir: Directorul unde se salveaza fisierele cu verdictele
     
     Returns:
@@ -133,8 +135,8 @@ def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/ver
             print(f"        ⊙ Verdict already saved")
             return True
         
-        # Verificam verdictul in problemset_page.html (MAI INTAI, inainte de click)
-        with open("problemset_page.html", "r", encoding="utf-8") as f:
+        # Verificam verdictul in fisierul problemset ACTUAL (nu hardcodat) (INAINTE de click)
+        with open(problemset_file_path, "r", encoding="utf-8") as f:
             problemset_soup = BeautifulSoup(f.read(), "html.parser")
         
         # Cautam submisia dupa ID in fisierul problemset_page.html
@@ -150,6 +152,18 @@ def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/ver
         delay_before_click = random.uniform(65, 120)
         print(f"        ⏳ Verdict NOT Accepted - waiting {delay_before_click:.0f}s ({delay_before_click/60:.1f} min) before clicking...")
         time.sleep(delay_before_click)
+        
+        # IMPORTANT: Navigam la pagina submisiei ÎNAINTE de a da click
+        print(f"        🔄 Navigating to submission page...")
+        driver.get(submission_url)
+        
+        # Asteptam incarcarea paginii
+        WebDriverWait(driver, 15).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+        
+        # Small delay pentru a se asigura că pagina e complet încărcată
+        time.sleep(2)
         
         # Daca nu e Accepted, cautam butonul pentru a vedea testele
         try:
@@ -212,7 +226,7 @@ def extract_and_save_failed_test(driver, submission_id, verdict_dir="results/ver
         return False
 
 
-def save_all_submissions(submissions, output_dir="results/submission_pages", 
+def save_all_submissions(submissions, problemset_file_path, output_dir="results/submission_pages", 
                         verdict_dir="results/verdict",
                         min_delay=25, max_delay=45, batch_size=8, 
                         long_pause_min=120, long_pause_max=300,
@@ -225,6 +239,7 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
     
     Args:
         submissions: Lista de dictionare cu informatii despre submisii
+        problemset_file_path: Path-ul fisierului problemset din care se verifica verdictele
         output_dir: Directorul unde se salveaza fisierele HTML
         verdict_dir: Directorul unde se salveaza verdictele
         min_delay: Delay minim intre request-uri (secunde)
@@ -274,6 +289,8 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
         # Skip daca fisierul exista deja
         if os.path.exists(output_file):
             print(f"[{i+1}/{total}] ✓ Skipping {submission_id} (already exists)")
+            print(f"    📊 Checking for failed tests...")
+            extract_and_save_failed_test(driver, submission_id, url, problemset_file_path, verdict_dir=verdict_dir)
             skipped += 1
             
             # IMPORTANT: Delay aleatoriu și pentru submisiile existente (anti-Cloudflare)
@@ -319,7 +336,7 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
             
             # Incercam sa extragem si salvam ultimul test failed (daca nu e Accepted)
             print(f"    📊 Checking for failed tests...")
-            extract_and_save_failed_test(driver, submission_id, verdict_dir=verdict_dir)
+            extract_and_save_failed_test(driver, submission_id, url, problemset_file_path, verdict_dir=verdict_dir)
             
             # Delay variabil pentru a evita pattern-uri predictibile
             delay = random.uniform(min_delay, max_delay)
@@ -365,7 +382,7 @@ def save_all_submissions(submissions, output_dir="results/submission_pages",
 
 def extract_code_solution_hints(driver, problemset_file, page_number, 
                                 output_folder="code_solution_hints_folder",
-                                min_delay=90, max_delay=240):
+                                min_delay=190, max_delay=540):
     """
     ETAPA 2: Extrage Code, Solution si Hints din fiecare problem din tutorial.
     
@@ -499,7 +516,9 @@ def extract_code_solution_hints(driver, problemset_file, page_number,
     return output_file
 
 
-def process_problemset_file(problemset_file, page_number, debug_port=9308):
+def process_problemset_file(problemset_file, page_number, debug_port=9206,
+                           chrome_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+                           user_data_dir="C:\\chrome_debug_temp"):
     """
     Proceseaza un fisier de problemset:
     - Extrage submisiile din fisierul HTML
@@ -508,8 +527,10 @@ def process_problemset_file(problemset_file, page_number, debug_port=9308):
     
     Args:
         problemset_file: Calea catre fisierul problemset HTML
-        page_number: Numarul paginii (pentru creare foldere)
+        page_number: Numarul paginii (pentru criere foldere)
         debug_port: Portul pour conexiunea Chrome
+        chrome_path: Calea catre chrome.exe
+        user_data_dir: Directorul pentru user data
     """
     print(f"\n{'='*80}")
     print(f"PROCESSING FILE {page_number}: {os.path.basename(problemset_file)}")
@@ -541,12 +562,13 @@ def process_problemset_file(problemset_file, page_number, debug_port=9308):
     
     save_all_submissions(
         submissions,
+        problemset_file,
         output_dir=submission_pages_dir,
         verdict_dir=verdict_dir,
-        min_delay=80,               # minim 80 secunde intre requests
-        max_delay=120,              # maxim 120 secunde intre requests  
-        batch_size=8,               # pauza lunga la fiecare 8 submisii
-        long_pause_min=180,         # pauza de 3 minute
+        min_delay=185,               # minim 80 secunde intre requests
+        max_delay=720,              # maxim 120 secunde intre requests  
+        batch_size=6,               # pauza lunga la fiecare 8 submisii
+        long_pause_min=280,         # pauza de 3 minute
         long_pause_max=360,         # pauza de 6 minute
         change_useragent=False,     # NU schimba User-Agent (mai sigur!)
         debug_port_start=debug_port,
@@ -561,6 +583,20 @@ def process_problemset_file(problemset_file, page_number, debug_port=9308):
     print(f"\n" + "="*80)
     print(f"PROCEEDING TO STAGE 2: Extract Code, Solution, Hints")
     print("="*80)
+    
+    # Check daca ETAPA 2 e deja complete
+    output_file = os.path.join("code_solution_hints_folder", f"code_solution_hints_{page_number}.json")
+    if os.path.exists(output_file):
+        try:
+            with open(output_file, 'r', encoding='utf-8') as f:
+                existing_data = json.load(f)
+            if len(existing_data) > 0:
+                print(f"✅ ETAPA 2 already completed!")
+                print(f"   Found {len(existing_data)} problems extracted")
+                print(f"   Skipping extraction for page {page_number}...\n")
+                return
+        except:
+            pass
     
     # Conectare la browser pentru etapa 2
     print(f"\nMake sure Chrome is running with:")
@@ -577,8 +613,8 @@ def process_problemset_file(problemset_file, page_number, debug_port=9308):
         problemset_file,
         page_number,
         output_folder="code_solution_hints_folder",
-        min_delay=90,   # 1.5 minute
-        max_delay=240   # 4 minute
+        min_delay=189,   # 1.5 minute
+        max_delay=420   # 4 minute
     )
     
     # Cleanup
@@ -591,7 +627,7 @@ def process_problemset_file(problemset_file, page_number, debug_port=9308):
 if __name__ == "__main__":
     try:
         # Configurare
-        DEBUG_PORT_START = 9308
+        DEBUG_PORT_START = 9206
         CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
         USER_DATA_DIR = "C:\\chrome_debug_temp"
         PROBLEMSET_PAGES_DIR = "problemset_pages"
@@ -619,11 +655,11 @@ if __name__ == "__main__":
         
         # Proceseaza fiecare fisier
         for i, problemset_file in enumerate(problemset_files, 1):
-            # Calculeaza portul Debug pentru fiecare fisier
-            debug_port = DEBUG_PORT_START + (i - 1) * 10  # ex: 9308, 9318, 9328...
+            # Folosim acelasi port pentru toate fisierele
+            debug_port = DEBUG_PORT_START
             
             try:
-                process_problemset_file(problemset_file, i, debug_port)
+                process_problemset_file(problemset_file, i + 1, debug_port, CHROME_PATH, USER_DATA_DIR)
             except Exception as e:
                 print(f"\n❌ Error processing {problemset_file}:")
                 print(f"   {str(e)}")

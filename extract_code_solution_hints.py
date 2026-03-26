@@ -409,18 +409,114 @@ def extract_solution_from_html(soup, problem_code=None):
         return None
 
 
+def extract_tutorial_section(soup, problem_code=None):
+    """Extrage TUTORIAL-ul din HTML-ul paginii (cautand cuvantul 'Tutorial').
+    
+    Cauta in 2 moduri:
+    1. Spoiler cu titlu "Tutorial"
+    2. Plain text in <div class="ttypography"> care contine Tutorial explanation
+    """
+    try:
+        # Daca avem problem_code, incearcam sa izolam sectiunea problemei
+        if problem_code:
+            section = find_problem_section(soup, problem_code)
+            if section:
+                soup = section
+        
+        # CAZUL 1: Cauta pentru spoilers cu titlu "Tutorial"
+        spoilers = soup.find_all("div", class_="spoiler")
+        for spoiler in spoilers:
+            # Cauta titlul spoilerului (poate fi <b> sau <p>)
+            spoiler_header = spoiler.find("b", class_="spoiler-title")
+            if spoiler_header is None:
+                spoiler_header = spoiler.find("p", class_="spoiler-title")
+            
+            if spoiler_header:
+                header_text = spoiler_header.get_text(strip=True).lower()
+                # Verifica daca titlul contine "tutorial"
+                if "tutorial" in header_text:
+                    # Extrage continutul din spoiler-content div
+                    content_div = spoiler.find("div", class_="spoiler-content")
+                    if content_div:
+                        tutorial_text = content_div.get_text(strip=True, separator=" ")
+                        if tutorial_text and len(tutorial_text) > 30:
+                            return tutorial_text[:5000]  # Primele 5000 caractere
+        
+        # CAZUL 2: Plain text in <div class="ttypography"> care pare a fi Tutorial
+        ttypography_divs = soup.find_all("div", class_="ttypography")
+        for ttypography_div in ttypography_divs:
+            text = ttypography_div.get_text(strip=True, separator=" ")
+            # Verifica daca contine cuvintele "tutorial" sau "explanation"
+            if len(text) > 100 and any(word in text.lower() for word in ["tutorial", "explanation"]):
+                return text[:5000]
+        
+        return None
+    except Exception as e:
+        print(f"            ⚠️ Error extracting tutorial section: {str(e)}")
+        return None
+
+
+def extract_editorial_section(soup, problem_code=None):
+    """Extrage EDITORIAL-ul din HTML-ul paginii (cautand cuvantul 'Editorial').
+    
+    Cauta in 2 moduri:
+    1. Spoiler cu titlu "Editorial"
+    2. Heading/text care contine "Editorial"
+    """
+    try:
+        # Daca avem problem_code, incearcam sa izolam sectiunea problemei
+        if problem_code:
+            section = find_problem_section(soup, problem_code)
+            if section:
+                soup = section
+        
+        # CAZUL 1: Cauta pentru spoilers cu titlu "Editorial"
+        spoilers = soup.find_all("div", class_="spoiler")
+        for spoiler in spoilers:
+            # Cauta titlul spoilerului (poate fi <b> sau <p>)
+            spoiler_header = spoiler.find("b", class_="spoiler-title")
+            if spoiler_header is None:
+                spoiler_header = spoiler.find("p", class_="spoiler-title")
+            
+            if spoiler_header:
+                header_text = spoiler_header.get_text(strip=True).lower()
+                # Verifica daca titlul contine "editorial"
+                if "editorial" in header_text:
+                    # Extrage continutul din spoiler-content div
+                    content_div = spoiler.find("div", class_="spoiler-content")
+                    if content_div:
+                        editorial_text = content_div.get_text(strip=True, separator=" ")
+                        if editorial_text and len(editorial_text) > 30:
+                            return editorial_text[:5000]  # Primele 5000 caractere
+        
+        # CAZUL 2: Cauta pentru heading/text care contine "Editorial"
+        ttypography_divs = soup.find_all("div", class_="ttypography")
+        for ttypography_div in ttypography_divs:
+            text = ttypography_div.get_text(strip=True, separator=" ")
+            if len(text) > 100 and "editorial" in text.lower():
+                # Extrage text pana la urmatoarea sectiune (max 5000 chars)
+                return text[:5000]
+        
+        return None
+    except Exception as e:
+        print(f"            ⚠️ Error extracting editorial section: {str(e)}")
+        return None
+
+
 def extract_tutorial_content(driver, problem_code):
     """
     Gaseste linkul catre Tutorial/Editorial din pagina problemei si navighează la el.
-    Extrage Code, Solution, Hints pentru problema.
+    Extrage Code, Solution, Hints, Tutorial si Editorial pentru problema.
     
     Returns:
-        dict cu campurile: code, solution, hints sau None daca nu exista tutorial
+        dict cu campurile: code, solution, hints, Tutorial, Editorial sau None daca nu exista tutorial
     """
     tutorial_data = {
         'code': None,
         'solution': None,
-        'hints': None
+        'hints': None,
+        'Tutorial': None,
+        'Editorial': None
     }
     
     try:
@@ -464,14 +560,16 @@ def extract_tutorial_content(driver, problem_code):
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
         
-        # Parsam pagina tutorial pentru a extrage Code, Solution si Hints
+        # Parsam pagina tutorial pentru a extrage Code, Solution, Hints, Tutorial si Editorial
         tutorial_soup = BeautifulSoup(driver.page_source, "html.parser")
         
-        # Extragem cele 3 componente (specifice acestei probleme)
+        # Extragem cele 5 componente (specifice acestei probleme)
         # PASS DRIVER pentru a putea fetch submission-urile fara 403 Forbidden!
         tutorial_data['code'] = extract_code_from_html(tutorial_soup, problem_code, driver=driver)
         tutorial_data['solution'] = extract_solution_from_html(tutorial_soup, problem_code)
         tutorial_data['hints'] = extract_hints_from_html(tutorial_soup, problem_code)
+        tutorial_data['Tutorial'] = extract_tutorial_section(tutorial_soup, problem_code)
+        tutorial_data['Editorial'] = extract_editorial_section(tutorial_soup, problem_code)
         
         # salveaza pagina fiecarui tutorial astfel: tutorial_{problem_code}.html in folderul tutorial_pages_saved
         os.makedirs("tutorial_pages_saved", exist_ok=True)
@@ -485,6 +583,10 @@ def extract_tutorial_content(driver, problem_code):
             print(f"            ✓ Solution: {len(tutorial_data['solution'])} chars")
         if tutorial_data['hints']:
             print(f"            ✓ Hints: {len(tutorial_data['hints'])} items")
+        if tutorial_data['Tutorial']:
+            print(f"            ✓ Tutorial: {len(tutorial_data['Tutorial'])} chars")
+        if tutorial_data['Editorial']:
+            print(f"            ✓ Editorial: {len(tutorial_data['Editorial'])} chars")
         
         return tutorial_data
         
