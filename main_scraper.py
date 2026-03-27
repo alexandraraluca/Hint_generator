@@ -290,13 +290,13 @@ def save_all_submissions(submissions, problemset_file_path, output_dir="results/
         if os.path.exists(output_file):
             print(f"[{i+1}/{total}] ✓ Skipping {submission_id} (already exists)")
             print(f"    📊 Checking for failed tests...")
-            extract_and_save_failed_test(driver, submission_id, url, problemset_file_path, verdict_dir=verdict_dir)
+            # extract_and_save_failed_test(driver, submission_id, url, problemset_file_path, verdict_dir=verdict_dir)
             skipped += 1
             
-            # IMPORTANT: Delay aleatoriu și pentru submisiile existente (anti-Cloudflare)
-            delay = random.uniform(min_delay, max_delay)
-            print(f"    ⏳ Waiting {delay:.1f}s before next request...")
-            time.sleep(delay)
+            # # IMPORTANT: Delay aleatoriu și pentru submisiile existente (anti-Cloudflare)
+            # delay = random.uniform(min_delay, max_delay)
+            # print(f"    ⏳ Waiting {delay:.1f}s before next request...")
+            # time.sleep(delay)
             
             # Pauza lunga dupa fiecare batch (inclusiv pentru cele skipped)
             total_processed = processed + skipped
@@ -441,6 +441,13 @@ def extract_code_solution_hints(driver, problemset_file, page_number,
         # Skip daca deja am procesat problema
         if problem_code in results:
             print(f"    ✓ Already processed, skipping...")
+            skipped += 1
+            continue
+        
+        # IMPORTANT: Verifica daca fisierul tutorial deja exista in tutorial_pages_saved
+        tutorial_file = os.path.join("tutorial_pages_saved", f"tutorial_{problem_code}.html")
+        if os.path.exists(tutorial_file):
+            print(f"    ✓ Tutorial file already exists, skipping...")
             skipped += 1
             continue
         
@@ -659,7 +666,7 @@ if __name__ == "__main__":
             debug_port = DEBUG_PORT_START
             
             try:
-                process_problemset_file(problemset_file, i + 1, debug_port, CHROME_PATH, USER_DATA_DIR)
+                process_problemset_file(problemset_file, i + 3, debug_port, CHROME_PATH, USER_DATA_DIR)
             except Exception as e:
                 print(f"\n❌ Error processing {problemset_file}:")
                 print(f"   {str(e)}")
