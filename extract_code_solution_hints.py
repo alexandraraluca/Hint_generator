@@ -340,7 +340,7 @@ def extract_code_from_html(soup, problem_code=None, driver=None):
             if spoiler_title is None:
                 spoiler_title = spoiler.find("p", class_="spoiler-title")
                 
-            if spoiler_title and "code" in spoiler_title.get_text(strip=True).lower():
+            if spoiler_title and spoiler_title.get_text(strip=True).lower().startswith("code"):
                 # Extrage din spoiler-content
                 content_div = spoiler.find("div", class_="spoiler-content")
                 if content_div:
@@ -379,8 +379,8 @@ def extract_solution_from_html(soup, problem_code=None):
             
             if spoiler_header:
                 header_text = spoiler_header.get_text(strip=True).lower()
-                # Verifica daca titlul este EXACT "solution"
-                if header_text == "solution":
+                # Verifica daca titlul incepe cu "solution"
+                if header_text.startswith("solution"):
                     # Extrage continutul din spoiler-content div
                     content_div = spoiler.find("div", class_="spoiler-content")
                     if content_div:
@@ -433,8 +433,8 @@ def extract_tutorial_section(soup, problem_code=None):
             
             if spoiler_header:
                 header_text = spoiler_header.get_text(strip=True).lower()
-                # Verifica daca titlul contine "tutorial"
-                if "tutorial" in header_text:
+                # Verifica daca titlul incepe cu "tutorial"
+                if header_text.startswith("tutorial"):
                     # Extrage continutul din spoiler-content div
                     content_div = spoiler.find("div", class_="spoiler-content")
                     if content_div:
@@ -480,8 +480,8 @@ def extract_editorial_section(soup, problem_code=None):
             
             if spoiler_header:
                 header_text = spoiler_header.get_text(strip=True).lower()
-                # Verifica daca titlul contine "editorial"
-                if "editorial" in header_text:
+                # Verifica daca titlul incepe cu "editorial"
+                if header_text.startswith("editorial"):
                     # Extrage continutul din spoiler-content div
                     content_div = spoiler.find("div", class_="spoiler-content")
                     if content_div:
