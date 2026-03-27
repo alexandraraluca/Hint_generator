@@ -1,0 +1,135 @@
+<div class="roundbox borderTopRound" style="margin-top:2em;font-size:0.8em;">
+ <div class="caption titled">
+  <span class="test">
+   5
+  </span>
+  <div class="top-links">
+  </div>
+ </div>
+ <div class="infoline tm_infoline">
+  <strong>
+   Time
+  </strong>
+  :
+  <span class="timeConsumed">
+   15
+  </span>
+  ms,
+  <strong>
+   memory
+  </strong>
+  :
+  <span class="memoryConsumed">
+   0
+  </span>
+  KB
+ </div>
+ <div class="infoline verdict_infoline">
+  <div class="verdict_type error">
+   Verdict:
+   <span class="verdict">
+    RUNTIME_ERROR
+   </span>
+  </div>
+ </div>
+ <div class="file input-view">
+  <div class="name">
+   Input
+  </div>
+  <div class="text">
+   <pre class="input">1001100000
+11
+</pre>
+  </div>
+ </div>
+ <div class="file output-view">
+  <div class="name">
+   Participant's output
+  </div>
+  <div class="text">
+   <pre class="output"></pre>
+  </div>
+ </div>
+ <div class="file answer-view">
+  <div class="name">
+   Jury's answer
+  </div>
+  <div class="text">
+   <pre class="answer"></pre>
+  </div>
+ </div>
+ <div class="file checker-comment-view">
+  <div class="name">
+   Checker comment
+  </div>
+  <div class="text">
+   <pre class="checkerComment">Exit code is -1073741819</pre>
+  </div>
+ </div>
+ <div class="file diagnostics-result-comment-view">
+  <div class="name">
+   Diagnostics
+  </div>
+  <div class="text">
+   <pre class="diagnostics">Diagnostics detected issues [cpp.clang++-diagnose]: =================================================================
+==1120==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x13b03ef4 at pc 0x000ec961 bp 0x111ff7f8 sp 0x111ff7f4
+READ of size 4 at 0x13b03ef4 thread T0
+==1120==WARNING: Failed to use and restart external symbolizer!
+    #0 0xec960 in std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt;::operator[] C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:1810
+    #1 0xe3321 in main K:\codeforces72\fdd8f9f2e1252088d64850dfb52b803f\compile-52dd46f802e3ab1baafb8b89c482f3d9\p71.cpp:90
+    #2 0x17faf1 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #3 0x758967f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #4 0x77247f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #5 0x77247f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+0x13b03ef4 is located 0 bytes to the right of 372-byte region [0x13b03d80,0x13b03ef4)
+allocated by thread T0 here:
+    #0 0x17e0c7 in operator new C:\src\llvm_package_1201-final\llvm-project\compiler-rt\lib\asan\asan_new_delete.cpp:99
+    #1 0x10c25d in std::_Default_allocate_traits::_Allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:52
+    #2 0x10c097 in std::_Allocate&lt;8,std::_Default_allocate_traits,0&gt; C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:201
+    #3 0x13dbec in std::allocator&lt;std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt; &gt;::allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:1036
+    #4 0x13c850 in std::vector&lt;std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt;,std::allocator&lt;std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt; &gt; &gt;::_Buy C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:1986
+    #5 0xebc3b in std::vector&lt;std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt;,std::allocator&lt;std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt; &gt; &gt;::vector C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:725
+    #6 0xe1ce9 in main K:\codeforces72\fdd8f9f2e1252088d64850dfb52b803f\compile-52dd46f802e3ab1baafb8b89c482f3d9\p71.cpp:68
+    #7 0x17faf1 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #8 0x758967f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #9 0x77247f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #10 0x77247f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:1810 in std::vector&lt;std::pair&lt;int,int&gt;,std::allocator&lt;std::pair&lt;int,int&gt; &gt; &gt;::operator[]
+Shadow bytes around the buggy address:
+  0x32760780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x32760790: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x327607a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x327607b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x327607c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=&gt;0x327607d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00[04]fa
+  0x327607e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x327607f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x32760800: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x32760810: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x32760820: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==1120==ABORTING</pre>
+  </div>
+ </div>
+</div>

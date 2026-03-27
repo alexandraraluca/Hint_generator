@@ -1,0 +1,126 @@
+<div class="roundbox borderTopRound" style="margin-top:2em;font-size:0.8em;">
+ <div class="caption titled">
+  <span class="test">
+   1
+  </span>
+  <div class="top-links">
+  </div>
+ </div>
+ <div class="infoline tm_infoline">
+  <strong>
+   Time
+  </strong>
+  :
+  <span class="timeConsumed">
+   0
+  </span>
+  ms,
+  <strong>
+   memory
+  </strong>
+  :
+  <span class="memoryConsumed">
+   0
+  </span>
+  KB
+ </div>
+ <div class="infoline verdict_infoline">
+  <div class="verdict_type">
+   Verdict:
+   <span class="verdict">
+    COMPILATION_ERROR
+   </span>
+  </div>
+ </div>
+ <div class="file input-view">
+  <div class="name">
+   Input
+  </div>
+  <div class="text">
+   <pre class="input">aaaa
+aaaA
+</pre>
+  </div>
+ </div>
+ <div class="file output-view">
+  <div class="name">
+   Participant's output
+  </div>
+  <div class="text">
+   <pre class="output"></pre>
+  </div>
+ </div>
+ <div class="file answer-view">
+  <div class="name">
+   Jury's answer
+  </div>
+  <div class="text">
+   <pre class="answer"></pre>
+  </div>
+ </div>
+ <div class="file checker-comment-view">
+  <div class="name">
+   Checker comment
+  </div>
+  <div class="text">
+   <pre class="checkerComment">Can't compile file:
+program.cpp: In function 'int main()':
+program.cpp:9:11: error: no match for 'operator-' (operand types are 'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} and 'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'})
+    9 |     if(s1 - s2 &gt; 0) cout&lt;&lt; -1;
+      |        ~~ ^ ~~
+      |        |    |
+      |        |    basic_string&lt;[...]&gt;
+      |        basic_string&lt;[...]&gt;
+In file included from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/string:48,
+                 from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/locale_classes.h:40,
+                 from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/ios_base.h:41,
+                 from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/ios:44,
+                 from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/ostream:40,
+                 from C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/iostream:41,
+                 from program.cpp:1:
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:625:5: note: candidate: 'template&lt;class _IteratorL, class _IteratorR&gt; constexpr decltype ((__y.base() - __x.base())) std::operator-(const reverse_iterator&lt;_IteratorL&gt;&amp;, const reverse_iterator&lt;_IteratorR&gt;&amp;)'
+  625 |     operator-(const reverse_iterator&lt;_IteratorL&gt;&amp; __x,
+      |     ^~~~~~~~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:625:5: note:   template argument deduction/substitution failed:
+program.cpp:9:13: note:   'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} is not derived from 'const std::reverse_iterator&lt;_IteratorL&gt;'
+    9 |     if(s1 - s2 &gt; 0) cout&lt;&lt; -1;
+      |             ^~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:1800:5: note: candidate: 'template&lt;class _IteratorL, class _IteratorR&gt; constexpr decltype ((__x.base() - __y.base())) std::operator-(const move_iterator&lt;_IteratorL&gt;&amp;, const move_iterator&lt;_IteratorR&gt;&amp;)'
+ 1800 |     operator-(const move_iterator&lt;_IteratorL&gt;&amp; __x,
+      |     ^~~~~~~~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:1800:5: note:   template argument deduction/substitution failed:
+program.cpp:9:13: note:   'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} is not derived from 'const std::move_iterator&lt;_IteratorL&gt;'
+    9 |     if(s1 - s2 &gt; 0) cout&lt;&lt; -1;
+      |             ^~
+program.cpp:10:11: error: no match for 'operator-' (operand types are 'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} and 'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'})
+   10 |     if(s1 -s2 &lt; 0) cout&lt;&lt; 1;
+      |        ~~ ^~~
+      |        |   |
+      |        |   basic_string&lt;[...]&gt;
+      |        basic_string&lt;[...]&gt;
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:625:5: note: candidate: 'template&lt;class _IteratorL, class _IteratorR&gt; constexpr decltype ((__y.base() - __x.base())) std::operator-(const reverse_iterator&lt;_IteratorL&gt;&amp;, const reverse_iterator&lt;_IteratorR&gt;&amp;)'
+  625 |     operator-(const reverse_iterator&lt;_IteratorL&gt;&amp; __x,
+      |     ^~~~~~~~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:625:5: note:   template argument deduction/substitution failed:
+program.cpp:10:12: note:   'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} is not derived from 'const std::reverse_iterator&lt;_IteratorL&gt;'
+   10 |     if(s1 -s2 &lt; 0) cout&lt;&lt; 1;
+      |            ^~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:1800:5: note: candidate: 'template&lt;class _IteratorL, class _IteratorR&gt; constexpr decltype ((__x.base() - __y.base())) std::operator-(const move_iterator&lt;_IteratorL&gt;&amp;, const move_iterator&lt;_IteratorR&gt;&amp;)'
+ 1800 |     operator-(const move_iterator&lt;_IteratorL&gt;&amp; __x,
+      |     ^~~~~~~~
+C:/Programs/gcc13-64-winlibs/include/c++/13.2.0/bits/stl_iterator.h:1800:5: note:   template argument deduction/substitution failed:
+program.cpp:10:12: note:   'std::string' {aka 'std::__cxx11::basic_string&lt;char&gt;'} is not derived from 'const std::move_iterator&lt;_IteratorL&gt;'
+   10 |     if(s1 -s2 &lt; 0) cout&lt;&lt; 1;
+      |            ^~
+</pre>
+  </div>
+ </div>
+ <div class="file diagnostics-result-comment-view" style="display: none;">
+  <div class="name">
+   Diagnostics
+  </div>
+  <div class="text">
+   <pre class="diagnostics">?</pre>
+  </div>
+ </div>
+</div>

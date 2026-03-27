@@ -1,0 +1,140 @@
+<div class="roundbox borderTopRound" style="margin-top:2em;font-size:0.8em;">
+ <div class="caption titled">
+  <span class="test">
+   31
+  </span>
+  <div class="top-links">
+  </div>
+ </div>
+ <div class="infoline tm_infoline">
+  <strong>
+   Time
+  </strong>
+  :
+  <span class="timeConsumed">
+   0
+  </span>
+  ms,
+  <strong>
+   memory
+  </strong>
+  :
+  <span class="memoryConsumed">
+   0
+  </span>
+  KB
+ </div>
+ <div class="infoline verdict_infoline">
+  <div class="verdict_type error">
+   Verdict:
+   <span class="verdict">
+    WRONG_ANSWER
+   </span>
+  </div>
+ </div>
+ <div class="file input-view">
+  <div class="name">
+   Input
+  </div>
+  <div class="text">
+   <pre class="input">100
+1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000
+</pre>
+  </div>
+ </div>
+ <div class="file output-view">
+  <div class="name">
+   Participant's output
+  </div>
+  <div class="text">
+   <pre class="output">YES
+</pre>
+  </div>
+ </div>
+ <div class="file answer-view">
+  <div class="name">
+   Jury's answer
+  </div>
+  <div class="text">
+   <pre class="answer">NO
+</pre>
+  </div>
+ </div>
+ <div class="file checker-comment-view">
+  <div class="name">
+   Checker comment
+  </div>
+  <div class="text">
+   <pre class="checkerComment">wrong answer 1st words differ - expected: 'NO', found: 'YES'
+</pre>
+  </div>
+ </div>
+ <div class="file diagnostics-result-comment-view">
+  <div class="name">
+   Diagnostics
+  </div>
+  <div class="text">
+   <pre class="diagnostics">Diagnostics detected issues [cpp.clang++-c++20-diagnose]: =================================================================
+==6232==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x13602060 at pc 0x003d1593 bp 0x10dff614 sp 0x10dff610
+READ of size 8 at 0x13602060 thread T0
+==6232==WARNING: Failed to use and restart external symbolizer!
+    #0 0x3d1592 in BoOoOoOoM K:\codeforces73\b13771fc39dff7137b6a503b653fee1f\compile-c4ca3937d571e402b99d799785b475bb\p71.cpp:35
+    #1 0x3d2316 in main K:\codeforces73\b13771fc39dff7137b6a503b653fee1f\compile-c4ca3937d571e402b99d799785b475bb\p71.cpp:48
+    #2 0x454f31 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #3 0x75c467f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #4 0x778d7f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #5 0x778d7f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+0x13602063 is located 0 bytes to the right of 8035-byte region [0x13600100,0x13602063)
+allocated by thread T0 here:
+    #0 0x453507 in operator new C:\src\llvm_package_1201-final\llvm-project\compiler-rt\lib\asan\asan_new_delete.cpp:99
+    #1 0x3f608d in std::_Default_allocate_traits::_Allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:52
+    #2 0x3f5f5a in std::_Allocate_manually_vector_aligned&lt;std::_Default_allocate_traits&gt; C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:102
+    #3 0x3f5eaa in std::_Allocate&lt;8,std::_Default_allocate_traits,0&gt; C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:195
+    #4 0x40f1cc in std::allocator&lt;long long&gt;::allocate C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\xmemory0:1036
+    #5 0x40de70 in std::vector&lt;long long,std::allocator&lt;long long&gt; &gt;::_Buy C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:1986
+    #6 0x3d33d8 in std::vector&lt;long long,std::allocator&lt;long long&gt; &gt;::vector C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.14.26428\include\vector:711
+    #7 0x3d131f in BoOoOoOoM K:\codeforces73\b13771fc39dff7137b6a503b653fee1f\compile-c4ca3937d571e402b99d799785b475bb\p71.cpp:32
+    #8 0x3d2316 in main K:\codeforces73\b13771fc39dff7137b6a503b653fee1f\compile-c4ca3937d571e402b99d799785b475bb\p71.cpp:48
+    #9 0x454f31 in __scrt_common_main_seh f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:283
+    #10 0x75c467f8 in BaseThreadInitThunk+0x18 (C:\Windows\System32\KERNEL32.DLL+0x6b8167f8)
+    #11 0x778d7f4c in RtlGetFullPathName_UEx+0xac (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f4c)
+    #12 0x778d7f1a in RtlGetFullPathName_UEx+0x7a (C:\Windows\SYSTEM32\ntdll.dll+0x4b2e7f1a)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow K:\codeforces73\b13771fc39dff7137b6a503b653fee1f\compile-c4ca3937d571e402b99d799785b475bb\p71.cpp:35 in BoOoOoOoM
+Shadow bytes around the buggy address:
+  0x326c03b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x326c03c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x326c03d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x326c03e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x326c03f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=&gt;0x326c0400: 00 00 00 00 00 00 00 00 00 00 00 00[03]fa fa fa
+  0x326c0410: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x326c0420: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x326c0430: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x326c0440: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x326c0450: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==6232==ABORTING</pre>
+  </div>
+ </div>
+</div>
