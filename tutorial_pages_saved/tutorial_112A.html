@@ -1,0 +1,2763 @@
+<html lang="en"><head>
+        <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-K230KVN22K&amp;cx=c&amp;gtm=4e63o1"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-743380-5"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-743380-5');
+        </script>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="X-Csrf-Token" content="9b3a685565bea8925809de4fba8da2eb">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=0.01">
+    <meta name="robots" content="noai">
+    <meta name="robots" content="noimageai">
+
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery-1.8.3.js"></script>
+    <script type="application/javascript">
+        window.locale = "en";
+        window.standaloneContest = false;
+        function adjustViewport() {
+            var screenWidthPx = Math.min($(window).width(), window.screen.width);
+            var siteWidthPx = 1100; // min width of site
+            var ratio = Math.min(screenWidthPx / siteWidthPx, 1.0);
+            var viewport = "width=device-width, initial-scale=" + ratio;
+            $('#viewport').attr('content', viewport);
+            var style = $('<style>html * { max-height: 1000000px; }</style>');
+            $('html > head').append(style);
+        }
+
+        if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+            adjustViewport();
+        }
+
+        /* Protection against trailing dot in domain. */
+        let hostLength = window.location.host.length;
+        if (hostLength > 1 && window.location.host[hostLength - 1] === '.') {
+            window.location = window.location.protocol + "//" + window.location.host.substring(0, hostLength - 1);
+        }
+    </script>
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="profileName" content="l2">
+    <meta name="google-site-verification" content="OTd2dN5x4nS4OPknPI9JFg36fKxjqY0i1PSfFPv_J90">
+    <meta property="fb:admins" content="100001352546622">
+    <meta property="og:image" content="//codeforces.com/codeforces.org/s/23517/images/codeforces-sponsored-by-ton.png">
+    <link rel="image_src" href="//codeforces.com/codeforces.org/s/23517/images/codeforces-sponsored-by-ton.png">
+    <meta property="og:title" content="Codeforces Beta Round #85: Editorial - Codeforces">
+    <meta property="og:description" content="">
+    
+    <meta property="og:site_name" content="Codeforces">
+    
+    
+    
+    
+    
+    
+    <meta name="utc_offset" content="+03:00">
+    <meta name="verify-reformal" content="f56f99fd7e087fb6ccb48ef2">
+    <title>Codeforces Beta Round #85: Editorial - Codeforces</title>
+        <meta name="description" content="Codeforces. Programming competitions and contests, programming community">
+        <meta name="keywords" content="programming algorithm contest competition informatics olympiads c++ java graphs vkcup">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/font-awesome.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/line-awesome.min.css" type="text/css" charset="utf-8">
+
+        <link rel="preconnect" href="https://challenges.cloudflare.com">
+        <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
+        <style type="text/css">@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/cyrillic/700/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/cyrillic-ext/700/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:PT Sans Narrow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/pt-sans-narrow/5.0.19/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+        <style type="text/css">@font-face {font-family:Cuprum;font-style:normal;font-weight:400;src:url(/cf-fonts/s/cuprum/5.0.18/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Cuprum;font-style:normal;font-weight:400;src:url(/cf-fonts/s/cuprum/5.0.18/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Cuprum;font-style:normal;font-weight:400;src:url(/cf-fonts/s/cuprum/5.0.18/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Cuprum;font-style:normal;font-weight:400;src:url(/cf-fonts/s/cuprum/5.0.18/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Cuprum;font-style:normal;font-weight:400;src:url(/cf-fonts/s/cuprum/5.0.18/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="//codeforces.com/codeforces.org/s/23517/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="//codeforces.com/codeforces.org/s/23517/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="//codeforces.com/codeforces.org/s/23517/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="//codeforces.com/codeforces.org/s/23517/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="//codeforces.com/codeforces.org/s/23517/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="//codeforces.com/codeforces.org/s/23517/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="//codeforces.com/codeforces.org/s/23517/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="//codeforces.com/codeforces.org/s/23517/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="//codeforces.com/codeforces.org/s/23517/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="//codeforces.com/codeforces.org/s/23517/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="//codeforces.com/codeforces.org/s/23517/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="//codeforces.com/codeforces.org/s/23517/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="//codeforces.com/codeforces.org/s/23517/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="//codeforces.com/codeforces.org/s/23517/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--CombineResourcesFilter-->
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/prettify.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/clear.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/style.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/ttypography.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/problem-statement.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/second-level-menu.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/roundbox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/datatable.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/table-form.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/topic.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/jquery.jgrowl.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/facebox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/jquery.wysiwyg.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/jquery.autocomplete.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/codeforces.datepick.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/colorbox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/jquery.drafts.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/css/community.css" type="text/css" charset="utf-8">
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]}
+    });
+    MathJax.Hub.Register.StartupHook("End", function () {
+        Codeforces.runMathJaxListeners();
+    });
+    </script>
+    <script type="text/javascript" async="" src="https://codeforces.com/mathjax.codeforces.org/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+    <!-- /MathJax -->
+
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/prettify/prettify.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/pushstream.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.lavalamp.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.jgrowl.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.swipe.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/facebox.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/controls/wysiwyg.colorpicker.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/controls/wysiwyg.table.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/controls/wysiwyg.image.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/controls/wysiwyg.link.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.datepick.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.ie6blocker.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.ba-bbq.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/jquery.drafts.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/clipboard.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/autosize.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/sjcl.js"></script>
+    <script type="text/javascript" src="/scripts/0ebdd262189ffa07bdc79d205d0cffe1/en/codeforces-options.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/codeforces.js?v=20160131"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/EventCatcher.js?v=20160131"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/preparedVerdictFormats-en.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/confetti.min.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/js/purify.min.js"></script>
+    <!--/CombineResourcesFilter-->
+
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/markitup/skins/markitup/style.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="//codeforces.com/codeforces.org/s/23517/markitup/sets/markdown/style.css" type="text/css" charset="utf-8">
+
+
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/markitup/jquery.markitup.js"></script>
+    <script type="text/javascript" src="//codeforces.com/codeforces.org/s/23517/markitup/sets/markdown/set.js"></script>
+
+    <!--[if IE]>
+    <style>
+        #sidebar {
+            padding-left: 1em;
+            margin: 1em 1em 1em 0;
+        }
+    </style>
+    <![endif]-->
+
+
+
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none; box-sizing: content-box}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_test {font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.MathJax_test.mjx-test-display {display: table!important}
+.MathJax_test.mjx-test-inline {display: inline!important; margin-right: -1px}
+.MathJax_test.mjx-test-default {display: block!important; clear: both}
+.MathJax_ex_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60ex}
+.MathJax_em_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60em}
+.mjx-test-inline .MathJax_left_box {display: inline-block; width: 0; float: left}
+.mjx-test-inline .MathJax_right_box {display: inline-block; width: 0; float: right}
+.mjx-test-display .MathJax_right_box {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.9') format('woff'), url('https://codeforces.com/mathjax.codeforces.org/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.9') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body class=" "><div id="MathJax_Message" style="display: none;"></div><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><span style="display:none;" class="csrf-token" data-csrf="9b3a685565bea8925809de4fba8da2eb">&nbsp;</span>
+
+<!-- .notificationTextCleaner used in Codeforces.showAnnouncements() -->
+<div class="notificationTextCleaner" style="font-size: 0"></div>
+<div class="button-up" style="display: none; opacity: 0.7; width: 50px; height:100%; position: fixed; left: 0; top: 0; cursor: pointer; text-align: center; line-height: 35px; color: #d3dbe4; font-weight: bold; font-size: 3.0rem;"><i class="icon-circle-arrow-up"></i></div>
+<div class="verdictPrototypeDiv" style="display: none;"></div>
+
+<!-- Codeforces JavaScripts. -->
+<script type="text/javascript">
+    String.prototype.hashCode = function() {
+        var hash = 0, i, chr;
+        if (this.length === 0) return hash;
+        for (i = 0; i < this.length; i++) {
+            chr   = this.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+    var queryMobile = Codeforces.queryString.mobile;
+    if (queryMobile === "true" || queryMobile === "false") {
+        Codeforces.putToStorage("useMobile", queryMobile === "true");
+    } else {
+        var useMobile = Codeforces.getFromStorage("useMobile");
+        if (useMobile === true || useMobile === false) {
+            if (useMobile != false) {
+                Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", useMobile));
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    if (window.parent.frames.length > 0) {
+        window.stop();
+    }
+</script>
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+    (function () {
+        jQuery.expr[':'].containsCI = function(elem, index, match) {
+            return !match || !match.length || match.length < 4 || !match[3] || (
+                    elem.textContent || elem.innerText || jQuery(elem).text() || ''
+            ).toLowerCase().indexOf(match[3].toLowerCase()) >= 0;
+        }
+    }(jQuery));
+
+    $.ajaxPrefilter(function(options, originalOptions, xhr) {
+        var csrf = Codeforces.getCsrfToken();
+
+        if (csrf) {
+            var data = originalOptions.data;
+            if (originalOptions.data !== undefined) {
+                if (Object.prototype.toString.call(originalOptions.data) === '[object String]') {
+                    data = $.deparam(originalOptions.data);
+                }
+            } else {
+                data = {};
+            }
+            options.data = $.param($.extend(data, { csrf_token: csrf }));
+        }
+    });
+
+    window.getCodeforcesServerTime = function(callback) {
+        $.post("/data/time", {}, callback, "json");
+    }
+
+    window.updateTypography = function () {
+        $("div.ttypography code").addClass("tt");
+        $("div.ttypography pre>code").addClass("prettyprint").removeClass("tt");
+        $("div.ttypography table").addClass("bordertable");
+        prettyPrint();
+    }
+
+    $.ajaxSetup({ scriptCharset: "utf-8" ,contentType: "application/x-www-form-urlencoded; charset=UTF-8", headers: {
+        'X-Csrf-Token': Codeforces.getCsrfToken()
+    }, beforeSend: function(jqXHR, settings) {
+        const url = new URL(settings.url, window.location.href);
+        const urlHref = url.href;
+        url.searchParams.set('rv', Math.random().toString(36).substr(2, 9)); // Generate a random value
+        settings.url = url.href;
+    }});
+
+    window.updateTypography();
+    Codeforces.signForms();
+    Codeforces.applyDatatableJs("Hold Ctrl+Alt and click to hide column. Also, you can drag&drop columns to reorder them.");
+
+    setTimeout(function() {
+        $(".second-level-menu-list").lavaLamp({
+            fx: "backout",
+            speed: 700
+        });
+    }, 100);
+
+
+    Codeforces.countdown();
+    $("a[rel='photobox']").colorbox();
+
+
+    function showAnnouncements(json) {
+        if (json.t === "a") {
+            setTimeout(function() {
+               Codeforces.showAnnouncements(json.d, "en");
+            }, Math.random() * 500);
+        }
+    }
+
+    function showEventCatcherUserMessage(json) {
+        if (json.t === "s") {
+            var points = json.d[5];
+            var passedTestCount = json.d[7];
+            var judgedTestCount = json.d[8];
+            var verdict = preparedVerdictFormats[json.d[12]];
+            var verdictPrototypeDiv = $(".verdictPrototypeDiv");
+            verdictPrototypeDiv.html(verdict);
+            if (judgedTestCount != null && judgedTestCount != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-judged").text(judgedTestCount);
+            }
+            if (passedTestCount != null && passedTestCount != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-passed").text(passedTestCount);
+            }
+            if (points != null && points != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-points").text(points);
+            }
+            Codeforces.showMessage(verdictPrototypeDiv.text());
+        }
+    }
+
+    $(".clickable-title").each(function() {
+        var title = $(this).attr("data-title");
+        if (title) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = title;
+            $(this).attr("title", tmp.textContent || tmp.innerText || "");
+        }
+    });
+
+    $(".clickable-title").click(function() {
+        const title = $(this).attr("data-title");
+        const clazz = $(this).attr("data-clazz");
+        const props = {};
+        if (typeof (clazz) !== 'undefined') {
+            props['clazz'] = clazz;
+        }
+        if (title) {
+            Codeforces.alert(title, null, null, props);
+        } else {
+            Codeforces.alert($(this).attr("title"), null, null, props);
+        }
+    }).css("position", "relative").css("bottom", "3px");
+
+        Codeforces.showMessage("You are not allowed to view the requested page");
+
+    Codeforces.reformatTimes();
+
+    //Codeforces.initializePubSub();
+    if (window.codeforcesOptions.subscribeServerUrl) {
+        window.eventCatcher = new EventCatcher(
+            window.codeforcesOptions.subscribeServerUrl,
+            [
+                Codeforces.getGlobalChannel(),
+                Codeforces.getUserChannel(),
+                Codeforces.getUserShowMessageChannel(),
+                Codeforces.getContestChannel(),
+                Codeforces.getParticipantChannel(),
+                Codeforces.getTalkChannel()
+            ]
+        );
+
+        if (Codeforces.getParticipantChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getParticipantChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getContestChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getContestChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getGlobalChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getGlobalChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getUserChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getUserChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getUserShowMessageChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getUserShowMessageChannel(), function(json) {
+                showEventCatcherUserMessage(json);
+            });
+        }
+    }
+
+    Codeforces.setupContestTimes("/data/contests");
+    Codeforces.setupSpoilers();
+    Codeforces.setupTutorials("/data/problemTutorial");
+        });
+    </script>
+
+
+<div id="body">
+        
+
+<div class="side-bell" style="visibility: hidden; display: none; opacity: 0.7; width: 40px; position: fixed; right: 0; top: 0; cursor: pointer; text-align: center; line-height: 35px; color: #d3dbe4; font-weight: bold; font-size: 1.5rem;">
+    <span class="icon-stack" style="width: 100%;">
+        <i class="icon-circle icon-stack-base"></i>
+        <i class="icon-bell-alt icon-light"></i>
+    </span>
+    <br>
+    <span class="side-bell__count" style="position: relative; top: -10px;"></span>
+</div>
+
+
+<div id="header" style="position: relative;">
+
+    <div style="float:left; max-height: 60px;">
+                <a href="/"><img height="65" style="height: 65px;" alt="Codeforces" title="Codeforces" src="//codeforces.com/codeforces.org/s/23517/images/codeforces-sponsored-by-ton.png"></a>
+    </div>
+    <div class="lang-chooser">
+            <div style="text-align: right;">
+                <a href="?locale=en"><img src="//codeforces.com/codeforces.org/s/23517/images/flags/24/gb.png" title="In English" alt="In English"></a>
+                <a href="?locale=ru"><img src="//codeforces.com/codeforces.org/s/23517/images/flags/24/ru.png" title="По-русски" alt="По-русски"></a>
+            </div>
+
+        <div>
+                        <a href="/enter?back=%2Fblog%2Fentry%2F2616">Enter</a>
+                     | 
+                        <a href="/register">Register</a>
+                    
+        </div>
+
+    </div>
+    <br style="clear: both;">
+</div>
+
+        
+
+
+    <div class="roundbox menu-box borderTopRound borderBottomRound" style="">
+    <div class="menu-list-container">
+    <ul class="menu-list main-menu-list">
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/top">Top</a></li>
+                <li class=""><a href="/catalog">Catalog</a></li>
+                <li class=""><a href="/contests">Contests</a></li>
+                <li class=""><a href="/gyms">Gym</a></li>
+                <li class=""><a href="/problemset">Problemset</a></li>
+                <li class=""><a href="/groups">Groups</a></li>
+                <li class=""><a href="/ratings">Rating</a></li>
+                <li class=""><a href="/edu/courses"><span class="edu-menu-item">Edu</span></a></li>
+                <li class=""><a href="/apiHelp">API</a></li>
+                <li class=""><a href="/calendar">Calendar</a></li>
+                <li class=""><a href="/help">Help</a></li>
+    </ul>
+        <form method="post" action="/search"><input type="hidden" name="csrf_token" value="9b3a685565bea8925809de4fba8da2eb">
+            <input class="search" name="query" data-isplaceholder="true" value="">
+        <input type="hidden" name="_tta" value="708"></form>
+    <br style="clear: both;">
+</div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input.search").focus(function () {
+                if ($(this).attr("data-isPlaceholder") === "true") {
+                    $(this).val("");
+                    $(this).removeAttr("data-isPlaceholder");
+                }
+            });
+        });
+    </script>
+        
+            <br style="height: 3em; clear: both;">
+
+        <div style="position: relative;">
+                        <div id="sidebar">
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ Pay attention
+            <div class="top-links">
+            </div>
+        </div>
+<div style="padding: 0.5em;">
+        <div style="text-align:center;">
+            <span class="contest-state-phase">Before contest</span><br><a href="/contests/2211">Nebius Round 2 (Codeforces Round 1088, Div. 1 + Div. 2)</a><br><span class="countdown" home="//codeforces.com/codeforces.org/s/23517" noredirection="true" textbeforeredirect="" cdid="i1"><span title="54:13:08">2 days</span></span><br><a href="/contestRegistration/2211">Register now »</a><div class="smaller notice">*has extra registration<i class="icon-question-sign clickable-title" title="If you are late to register in 5 minutes before the start, you can register later during the extra registration. Extra registration opens 10 minutes after the contest starts and lasts 20 minutes." style="position: relative; bottom: 3px;"></i></div>
+        </div>
+</div>
+    </div>
+
+<style data-nocturne="true" type="text/css">
+._StreamsSidebarFrame_frame {
+  padding: 0.5em 0.5em 0 0.5em;
+}
+._StreamsSidebarFrame_frame ._StreamsSidebarFrame_stream {
+  text-align: center;
+  border-bottom: 1px solid #b9b9b9;
+  margin: 0 -0.5em 0.5em -0.5em;
+  padding: 0 1em 0.5em 1em;
+}
+._StreamsSidebarFrame_frame ._StreamsSidebarFrame_stream ._StreamsSidebarFrame_user {
+  margin: 0 0 0.5em 0;
+  font-size: 0.8em;
+}
+._StreamsSidebarFrame_frame ._StreamsSidebarFrame_stream ._StreamsSidebarFrame_timeMark {
+  color: #777;
+  font-size: 0.9em;
+}
+._StreamsSidebarFrame_frame ._StreamsSidebarFrame_stream:last-of-type {
+  border-bottom: unset;
+  margin: unset;
+  padding: 0 0.5em 0.5em 1em;
+}
+._StreamsSidebarFrame_frame ._viewAll {
+  text-align: right;
+}
+.moreRunningStreamsSidebarNote {
+  color: #777 !important;
+  text-decoration: none;
+}
+</style>
+
+
+<script data-nocturne="true"> $(function () {
+
+}); </script>
+
+<div class="roundbox sidebox top-contributed borderTopRound " style="">
+<div class="caption titled">→ Top rated
+<div class="top-links">
+</div>
+</div>
+<table class="rtable ">
+<tbody>
+<tr>
+<th class="left" style="width:2.25em;">#</th>
+<th class="">User</th>
+<th class="" style="width:5em;">Rating</th>
+</tr>
+<tr>
+<td class="left dark">1</td>
+<td class=" dark"><a href="/profile/ecnerwala" title="Legendary Grandmaster ecnerwala" class="rated-user user-legendary"><span class="legendary-user-first-letter">e</span>cnerwala</a></td>
+<td class=" dark">3843</td>
+</tr>
+<tr>
+<td class="left ">2</td>
+<td class=""><a href="/profile/Benq" title="Legendary Grandmaster Benq" class="rated-user user-legendary"><span class="legendary-user-first-letter">B</span>enq</a></td>
+<td class="">3792</td>
+</tr>
+<tr>
+<td class="left dark">3</td>
+<td class=" dark"><a href="/profile/tourist" title="Legendary Grandmaster tourist" class="rated-user user-legendary"><span class="legendary-user-first-letter">t</span>ourist</a></td>
+<td class=" dark">3718</td>
+</tr>
+<tr>
+<td class="left ">4</td>
+<td class=""><a href="/profile/VivaciousAubergine" title="Legendary Grandmaster VivaciousAubergine" class="rated-user user-legendary"><span class="legendary-user-first-letter">V</span>ivaciousAubergine</a></td>
+<td class="">3646</td>
+</tr>
+<tr>
+<td class="left dark">5</td>
+<td class=" dark"><a href="/profile/jiangly" title="Legendary Grandmaster jiangly" class="rated-user user-legendary"><span class="legendary-user-first-letter">j</span>iangly</a></td>
+<td class=" dark">3614</td>
+</tr>
+<tr>
+<td class="left ">6</td>
+<td class=""><a href="/profile/ksun48" title="Legendary Grandmaster ksun48" class="rated-user user-legendary"><span class="legendary-user-first-letter">k</span>sun48</a></td>
+<td class="">3593</td>
+</tr>
+<tr>
+<td class="left dark">7</td>
+<td class=" dark"><a href="/profile/Kevin114514" title="Legendary Grandmaster Kevin114514" class="rated-user user-legendary"><span class="legendary-user-first-letter">K</span>evin114514</a></td>
+<td class=" dark">3490</td>
+</tr>
+<tr>
+<td class="left ">8</td>
+<td class=""><a href="/profile/strapple" title="Legendary Grandmaster strapple" class="rated-user user-legendary"><span class="legendary-user-first-letter">s</span>trapple</a></td>
+<td class="">3486</td>
+</tr>
+<tr>
+<td class="left dark">9</td>
+<td class=" dark"><a href="/profile/dXqwq" title="Legendary Grandmaster dXqwq" class="rated-user user-legendary"><span class="legendary-user-first-letter">d</span>Xqwq</a></td>
+<td class=" dark">3436</td>
+</tr>
+<tr>
+<td class="left bottom">10</td>
+<td class="bottom"><a href="/profile/Otomachi_Una" title="Legendary Grandmaster Otomachi_Una" class="rated-user user-legendary"><span class="legendary-user-first-letter">O</span>tomachi_Una</a></td>
+<td class="bottom">3413</td>
+</tr>
+</tbody>
+</table>
+<div class="bottom-links">
+<table style="width:100%;">
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="/ratings/countries">Countries</a> |
+<a href="/ratings/cities">Cities</a> |
+<a href="/ratings/organizations">Organizations</a>
+</td>
+<td style="text-align:right;">
+<a href="/ratings">View all →</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="roundbox sidebox top-contributed borderTopRound " style="">
+        <div class="caption titled">→ Top contributors
+            <div class="top-links">
+            </div>
+        </div>
+        <table class="rtable ">
+            <tbody>
+                <tr>
+                            <th class="left" style="width:2.25em;">#</th>
+                            <th class="">User</th>
+                            <th class="" style="width:5em;">Contrib.</th>
+                </tr>
+                    <tr>
+                                <td class="left  dark">1</td>
+                                <td class=" dark"><a href="/profile/Qingyu" title="Legendary Grandmaster Qingyu" class="rated-user user-legendary"><span class="legendary-user-first-letter">Q</span>ingyu</a></td>
+                                <td class=" dark">160</td>
+                    </tr>
+                    <tr>
+                                <td class="left ">2</td>
+                                <td class=""><a href="/profile/adamant" title="Master adamant" class="rated-user user-orange">adamant</a></td>
+                                <td class="">153</td>
+                    </tr>
+                    <tr>
+                                <td class="left  dark">2</td>
+                                <td class=" dark"><a href="/profile/Um_nik" title="Legendary Grandmaster Um_nik" class="rated-user user-legendary"><span class="legendary-user-first-letter">U</span>m_nik</a></td>
+                                <td class=" dark">153</td>
+                    </tr>
+                    <tr>
+                                <td class="left ">4</td>
+                                <td class=""><a href="/profile/errorgorn" title="Legendary Grandmaster errorgorn" class="rated-user user-legendary"><span class="legendary-user-first-letter">e</span>rrorgorn</a></td>
+                                <td class="">148</td>
+                    </tr>
+                    <tr>
+                                <td class="left  dark">4</td>
+                                <td class=" dark"><a href="/profile/Dominater069" title="Legendary Grandmaster Dominater069" class="rated-user user-legendary"><span class="legendary-user-first-letter">D</span>ominater069</a></td>
+                                <td class=" dark">148</td>
+                    </tr>
+                    <tr>
+                                <td class="left ">6</td>
+                                <td class=""><a href="/profile/Proof_by_QED" title="International Master Proof_by_QED" class="rated-user user-orange">Proof_by_QED</a></td>
+                                <td class="">144</td>
+                    </tr>
+                    <tr>
+                                <td class="left  dark">7</td>
+                                <td class=" dark"><a href="/profile/cry" title="International Master cry" class="rated-user user-orange">cry</a></td>
+                                <td class=" dark">141</td>
+                    </tr>
+                    <tr>
+                                <td class="left ">8</td>
+                                <td class=""><a href="/profile/Arpa" title="Master Arpa" class="rated-user user-orange">Arpa</a></td>
+                                <td class="">136</td>
+                    </tr>
+                    <tr>
+                                <td class="left  dark">8</td>
+                                <td class=" dark"><a href="/profile/SecondThread" title="Grandmaster SecondThread" class="rated-user user-red">SecondThread</a></td>
+                                <td class=" dark">136</td>
+                    </tr>
+                    <tr>
+                                <td class="left bottom">10</td>
+                                <td class="bottom"><a href="/profile/TheScrasse" title="Grandmaster TheScrasse" class="rated-user user-red">TheScrasse</a></td>
+                                <td class="bottom">135</td>
+                    </tr>
+            </tbody>
+        </table>
+            <div class="bottom-links">
+                <table style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;">
+                            </td>
+                            <td style="text-align:right;">
+                                    <a href="/top-contributed">View all →</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ Find user
+            <div class="top-links">
+            </div>
+        </div>
+        <form class="handleForm" method="post" autocomplete="off"><input type="hidden" name="csrf_token" value="9b3a685565bea8925809de4fba8da2eb">
+            <div style="padding:1em;text-align:right;">
+                <label style="padding-right:1em;">Handle:
+                    <input style="width:12em;" type="text" class="handleBox ac_input" autocomplete="off">
+                </label>
+            </div>
+            <div style="padding: 0 1em 1em 1em;text-align:right;">
+                <input style="height:1.65em;padding:0 0.75em;" type="submit" value="Find">
+            </div>
+        <input type="hidden" name="_tta" value="708"></form>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+    $(".handleBox").autocompleteHandle();
+    $(".handleForm").attr("autocomplete", "off").submit(function () {
+        var link = "/profile/userHandle".replace(
+            "userHandle", $(this).find(".handleBox").val()
+        );
+        window.location = link;
+        return false;
+    });
+        });
+    </script>
+
+
+
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ Recent actions
+            <div class="top-links">
+            </div>
+        </div>
+        <div class="recent-actions">
+            <ul>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/None_Po" title="Pupil None_Po" class="rated-user user-green">None_Po</a>        →
+        <a href="/blog/entry/152399">Partition array to maximize sum of MEX – need help with approach</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Account_deleted." title="Newbie Account_deleted." class="rated-user user-gray">Account_deleted.</a>        →
+        <a href="/blog/entry/152390">What is real-name authentication in Luogu?</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Nickarin" title="Newbie Nickarin" class="rated-user user-gray">Nickarin</a>        →
+        <a href="/blog/entry/152396">Question about changing username</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/sidat" title="Expert sidat" class="rated-user user-blue">sidat</a>        →
+        <a href="/blog/entry/152346">Invitation to International Coding League '26, BITS Pilani</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Proof_by_QED" title="International Master Proof_by_QED" class="rated-user user-orange">Proof_by_QED</a>        →
+        <a href="/blog/entry/152171">Nebius Round 2 (Codeforces Round 1088, Div. 1 + Div. 2)</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Down_bad_4_haiender288" title="Pupil Down_bad_4_haiender288" class="rated-user user-green">Down_bad_4_haiender288</a>        →
+        <a href="/blog/entry/152339">[Discussion]: Vietnamese TST 2026</a>
+&nbsp;&nbsp;<img alt="Text created or updated" title="Text created or updated" src="//codeforces.com/codeforces.org/s/23517/images/icons/x-update-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/MikeMirzayanov" title="Headquarters, MikeMirzayanov" class="rated-user user-admin">MikeMirzayanov</a>        →
+        <a href="/blog/entry/8790">Rule about third-party code is changing</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+        <img alt="Necropost" title="Necropost" src="//codeforces.com/codeforces.org/s/23517/images/icons/hourglass.png" style="vertical-align:middle; position: relative; top: 1px;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/awang11" title="International Master awang11" class="rated-user user-orange">awang11</a>        →
+        <a href="/blog/entry/151819">Codeforces Round 1085 (Div. 1 + Div. 2)</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/07-priyanshu" title="Specialist 07-priyanshu" class="rated-user user-cyan">07-priyanshu</a>        →
+        <a href="/blog/entry/152395">Editorial for Code Enigma</a>
+&nbsp;&nbsp;<img alt="Text created or updated" title="Text created or updated" src="//codeforces.com/codeforces.org/s/23517/images/icons/x-update-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Ritwin" title="Master Ritwin" class="rated-user user-orange">Ritwin</a>        →
+        <a href="/blog/entry/152392">Stanford Local Programming Contest 2026</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/MBBN" title="Expert MBBN" class="rated-user user-blue">MBBN</a>        →
+        <a href="/blog/entry/152351">Holm–de Lichtenberg–Thorup Algorithm Explained (Dynamic Connectivity in O(log² n))</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/ismailfateen" title="Master ismailfateen" class="rated-user user-orange">ismailfateen</a>        →
+        <a href="/blog/entry/149719">ICPC WF 2026 Team List</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/SecondThread" title="Grandmaster SecondThread" class="rated-user user-red">SecondThread</a>        →
+        <a href="/blog/entry/150334">Meta Hacker Cup Shirts 2025 - Claim before January 31st!</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Farhod" title="Grandmaster Farhod" class="rated-user user-red">Farhod</a>        →
+        <a href="/blog/entry/152364">Electicode: The Codeforces for OI</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/voventa" title="Master voventa" class="rated-user user-orange">voventa</a>        →
+        <a href="/blog/entry/143822">Codeforces Round 1032 (Div. 3) Editorial</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/__baozii__" title="International Grandmaster __baozii__" class="rated-user user-red">__baozii__</a>        →
+        <a href="/blog/entry/150649">Codeforces Round 1077 (Div. 1, Div. 2) Editorial</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/AlexandruINV" title="Expert AlexandruINV" class="rated-user user-blue">AlexandruINV</a>        →
+        <a href="/blog/entry/151914">A Friendly Competitive Programming Discord Server</a>
+&nbsp;&nbsp;<img alt="Text created or updated" title="Text created or updated" src="//codeforces.com/codeforces.org/s/23517/images/icons/x-update-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/TheEvilBird" title="Expert TheEvilBird" class="rated-user user-blue">TheEvilBird</a>        →
+        <a href="/blog/entry/150940">Codeforces Round #1078 Editorial</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/awoo" title="Grandmaster awoo" class="rated-user user-red">awoo</a>        →
+        <a href="/blog/entry/152085">Educational Codeforces Round 188 [Rated for Div. 2]</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Qingyu" title="Legendary Grandmaster Qingyu" class="rated-user user-legendary"><span class="legendary-user-first-letter">Q</span>ingyu</a>        →
+        <a href="/blog/entry/152288">Partial Scores in ICPC Contests</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/AquaMoon" title="International Master AquaMoon" class="rated-user user-orange">AquaMoon</a>        →
+        <a href="/blog/entry/119772">Harbour.Space Scholarship Contest 2023-2024 (Div. 1 + Div. 2) Editorial</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+        <img alt="Necropost" title="Necropost" src="//codeforces.com/codeforces.org/s/23517/images/icons/hourglass.png" style="vertical-align:middle; position: relative; top: 1px;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/adaptatron" title="Newbie adaptatron" class="rated-user user-gray">adaptatron</a>        →
+        <a href="/blog/entry/152391">[Video]: Heap Sweep, Chmax DP, Z Algorithm ft. CF2209E</a>
+&nbsp;&nbsp;<img alt="Text created or updated" title="Text created or updated" src="//codeforces.com/codeforces.org/s/23517/images/icons/x-update-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Zlobober" title="International Grandmaster Zlobober" class="rated-user user-red">Zlobober</a>        →
+        <a href="/blog/entry/152338">Nebius – Early Talents</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/Mousa_Aboubaker" title="Expert Mousa_Aboubaker" class="rated-user user-blue">Mousa_Aboubaker</a>        →
+        <a href="/blog/entry/151133">NAOI 2026 Call For Tasks</a>
+&nbsp;&nbsp;<img alt="Text created or updated" title="Text created or updated" src="//codeforces.com/codeforces.org/s/23517/images/icons/x-update-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+                        <li><div style="font-size:0.9em;padding:0.5em 0;">
+<a href="/profile/NazihBaydoun" title="Newbie NazihBaydoun" class="rated-user user-gray">NazihBaydoun</a>        →
+        <a href="/blog/entry/152381">Codeforces Weird Bug?</a>
+&nbsp;&nbsp;<img alt="New comment(s)" title="New comment(s)" src="//codeforces.com/codeforces.org/s/23517/images/icons/comment-12x12.png" style="vertical-align:middle;">
+</div>
+</li>
+            </ul>
+        </div>
+            <div class="bottom-links">
+                <table style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;">
+                            </td>
+                            <td style="text-align:right;">
+                                    <a href="/recent-actions">Detailed →</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+                        <div id="pageContent" class="content-with-sidebar">
+                    <div class="second-level-menu">
+<ul class="second-level-menu-list"><li class="backLava" style="position: absolute; display: block; margin: 0px; padding: 0px; left: 49.6719px; top: 0px; width: 39px; height: 20px;"><div class="leftLava"></div><div class="bottomLava"></div><div class="cornerLava"></div></li>
+        <li><a href="/profile/Seyaua">Seyaua</a></li>
+        <li class="current selectedLava"><a href="/blog/Seyaua">Blog</a></li>
+        <li><a href="/teams/with/Seyaua">Teams</a></li>
+        <li><a href="/submissions/Seyaua">Submissions</a></li>
+        <li><a href="/contests/with/Seyaua">Contests</a></li>
+        <li><a href="/contests/writer/Seyaua">Problemsetting</a></li>
+</ul>
+</div>
+    <div style="margin-top:0;">
+    <div>
+        <h3><a href="/blog/Seyaua" style="text-decoration:none;color:black !important;">Seyaua's blog</a></h3>
+    </div>
+        <div style="margin-top:2em;">
+
+
+<div class="has-topic-id topic" topicid="2619">
+    <div class="title">
+            <a href="/blog/entry/2616">            <p>Codeforces Beta Round #85: Editorial</p>
+</a>
+    </div>
+
+        <div class="info" style="position:relative;">
+                By&nbsp;<a href="/profile/Seyaua" title="International Master Seyaua" class="rated-user user-orange">Seyaua</a>,
+                    <span class="format-humantime" title="Sep/07/2011 10:24 UTC+2">15 years ago</span>,
+                translation,
+                <img style="position: relative;top: 5px;" src="//codeforces.com/codeforces.org/s/23517/images/flags/24/gb.png" alt="In English" title="In English">
+
+
+
+            <div class="topic-actions smaller">
+                <ul>
+
+
+                </ul>
+            </div>
+        </div>
+
+    <div class="content">
+        <div class="ttypography"><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal" style=""><font class="Apple-style-span" face="Arial"><span class="apple-style-span"><span style="font-family: Arial;color: black;">Here you can find solutions to the problems from the past round. Editorial for Problem D (Div 1) was prepared by&nbsp;</span></span><span class="Apple-style-span" style="border-collapse: collapse;font-family: verdana , arial , sans-serif;font-size: 14.0px;"><a href="//codeforces.com/profile/sdya" title="Colonel sdya" class="rated-user user-red" style="font-family: arial;text-decoration: none !important;font-weight: bold;color: rgb(0,0,204);">sdya</a>.&nbsp;</span></font></p><p> </p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal" style=""><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 20.0px;"><b>Division 2, <a href="//codeforces.com/problemset/problem/112/A">problem A</a></b></span></font></p><p></p><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal"><span lang="EN-US">In this problem one could transform all letters in both strings to lower case and then compare the strings lexicographically.</span><font class="Apple-style-span" face="Arial"></font></p><p></p><p></p> <p class="MsoNormal"><span class="apple-style-span"><span style="font-family: Arial;color: black;"></span></span></p> <p class="MsoNormal"><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 20.0px;"><b><span class="Apple-style-span" style="font-weight: normal;"><b>Division 2,&nbsp;<a href="//codeforces.com/problemset/problem/112/B">problem B</a></b></span><br></b></span></font></p><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal"><span lang="EN-US">One can notice that if we want to divide a square into two equal parts, then the cutting line should pass through the center of our square. Thus, if the marked cell contains the center of the square, then we can’t make a cut, otherwise we can. Here is the code which solves the problem:</span><font class="Apple-style-span" face="Arial"></font></p><p></p><p></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">scanf(<span style="color: maroon;">"%d%d%d"</span>, &amp;n, &amp;x, &amp;y); </span></p> <p class="MsoNormal" style=""><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">n /= 2;</span></p> <p class="MsoNormal"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">if</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> ((x == n || x == n + 1) &amp;&amp; (y == n || y == n + 1)) printf(<span style="color: maroon;">"NO\n"</span>); <span style="color: blue;">else</span> printf(<span style="color: maroon;">"YES\n"</span>);</span><span class="apple-style-span"><span lang="EN-US" style="font-size: 10.0pt;font-family: Arial;color: black;"></span></span></p> <p class="MsoNormal"><span class="apple-style-span"><b style=""><span style="font-size: 14.0pt;font-family: Arial;color: black;"></span></b></span></p> <p class="MsoNormal"><span class="apple-style-span"><b style=""><span style="font-size: 14.0pt;font-family: Arial;color: black;"><span class="Apple-style-span" style="font-size: 20.0px;font-weight: normal;"><b>Division 2, <a href="//codeforces.com/problemset/problem/111/A">problem C</a></b></span></span></b></span><b style=""><span style="font-size: 14.0pt;font-family: Arial;color: black;">&nbsp;(<span class="Apple-style-span" style="font-size: 20.0px;font-weight: normal;"><b>Division 1, problem A</b></span>)</span></b></p> <p class="MsoNormal"><span lang="EN-US">It is easy to see that in order to maximize the sum of squares, one should make all numbers except the first one equal to 1 and maximize the first number. Keeping this in mind we only need to check whether the given value of <font class="Apple-style-span" face="Arial" size="3">y</font> is large enough to satisfy a restriction that all n numbers are positive. If y is not to small, then all we need is to ensure that <span class="tex-span"><i>x</i> ≤ 1 + 1 + … + (<i>y</i> - (<i>n</i> - 1))<sup class="upper-index">2</sup></span></span><font class="Apple-style-span" face="Arial"><br></font></p> <p class="MsoNormal"><span class="apple-style-span"><span style="font-family: Arial;color: black;"></span></span></p> <p class="MsoNormal"><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 19.0px;"><b><span class="Apple-style-span" style="font-weight: normal;"><b>Division 2,&nbsp;<a href="//codeforces.com/problemset/problem/111/B">Problem D</a>&nbsp;(Divison 1, problem B)</b></span><br></b></span></font></p><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal"><span lang="EN-US">Let’s create an array used[], <font class="Apple-style-span" face="Arial">j</font>-th element of which will be the index of the last number from the input, which is divisible by <font class="Apple-style-span" face="Arial">j</font>. Then for each query we’ll iterate over all divisors of x<font class="Apple-style-span" face="Arial">i</font> and for each k, which divides x<font class="Apple-style-span" face="Arial">i</font> we’ll check whether it is “unique”. After that we’ll update used[k].</span><font class="Apple-style-span" face="Arial"></font></p><p></p><p></p> <p class="MsoNormal"><span class="apple-style-span"><span lang="EN-US" style="font-family: Arial;color: black;"></span></span></p> <p class="MsoNormal"><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 19.0px;"><b><span class="Apple-style-span" style="font-weight: normal;"><b>Division 2,&nbsp;<a href="//codeforces.com/problemset/problem/111/C">Problem E</a>&nbsp;(Division 1, problem C)</b></span><br></b></span></font></p><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal"><span lang="EN-US">This problem has many different approaches. One of them uses the fact that the overall number of possible inputs is small and it is possible to compute the answer manually for all of them. One could also write a brute-force with a few optimizations, which works even without a precalc. </span></p><p></p> <p class="MsoNormal"><span lang="EN-US"></span></p> <p class="MsoNormal"><span lang="EN-US">However, the major part of all solutions involved dynamic programming with bitmasks. The solution below was described by Zlobober.</span></p> <p class="MsoNormal"><span lang="EN-US"></span></p> <p class="MsoNormal"><span lang="EN-US">Instead of counting the maximal number of free cells, we’ll count the minimal number of occupied cells. We’ll assume that the number of rows is not greater than 6 (otherwise we can rotate the board).</span></p> <p class="MsoNormal"><span lang="EN-US"></span></p> <p class="MsoNormal"><span lang="EN-US">Let D[k][pmask][mask] be the minimal number of occupied cells in the first k columns with the restrictions that the k-th column is described by pmask (ones correspond to occupied cells and zeroes correspond to free cells) and k+1-st column is described by mask. To make a transition from D[k-1][*][*] we can iterate over all possible masks for the k-1-st column, check whether we can distribute spiders in kth column knowing the masks for k+1-st and k-1-st columns and find the minimal value of D[k-1][*][pmask] for all such masks.</span></p> <p class="MsoNormal"><span lang="EN-US">&nbsp;</span></p><p></p><p class="MsoNormal"><span lang="EN-US">The overall complexity is <font class="Apple-style-span" face="Arial">O(n*2<sup>3m</sup></font>), n &gt; m.</span><font class="Apple-style-span" face="Arial"></font></p><p></p><p></p> <p class="MsoNormal"><span class="apple-style-span"><span style="font-family: Arial;color: black;">&nbsp;</span></span></p> <p class="MsoNormal"><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 19.0px;"><b><span class="Apple-style-span" style="font-weight: normal;"><b>Division 1,&nbsp;<a href="//codeforces.com/problemset/problem/111/D">Problem D</a></b></span><br></b></span></font></p><p></p><p class="MsoNormal"><font class="Apple-style-span" face="Arial"></font></p><p class="MsoNormal"><span lang="EN-US">One can notice that if <span class="tex-span"><i>m</i> = 1</span> then the answer is k<sup>n</sup>, because all colorings are possible.</span><span lang="EN-US"><br> </span><span lang="EN-US">Now we’ll assume that m &gt; 1. Let’s look on the first column of the board (i.e. the vertical cut will be made right next to the first column). Suppose there are <i>x</i> distinct colors in this column. Then in the rest of the board there are also <i>x</i> colors. If we move the vertical line by one unit to the right, the number of different colors to the left of it will not decrease and the number of colors to the right of it won’t increase. It means that the number of different colors in both parts of the board will be also <i>x</i>. We can repeat this process until the line reaches the rightmost column, which means that the number of distinct colors in it is also <i>x</i>. It is easy to see that we can only use colors which belong to the intersection of sets of colors in the leftmost and rightmost columns in the rest of the board.</span></p><p></p> <p class="MsoNormal"><span lang="EN-US"></span></p> <p class="MsoNormal"><span lang="EN-US">Let’s iterate over all values of <i>x</i> and <i>y</i>, where <i>x</i> is the number of colors in the leftmost column and <i>y</i> is the number of elements in intersection of sets of colors in the rightmost and leftmost columns. It is easy to see that <i>x</i> is limited by the number of rows in the board and y can’t be greater than <i>x</i>. Let’s find the answer for all such pairs of <i>x</i> and <i>y</i> and at the end we’ll add them up together.</span></p> <p class="MsoNormal"><span lang="EN-US">&nbsp;</span></p> <p class="MsoNormal"><span lang="EN-US">Suppose x and y are fixed. We first need to choose <i>(2x - y)</i> colors from the given k colors, which we will use, which means that the answer for will be multiplied by <i>C(k, 2x — y)</i>. After that we’ll choose <i>(x-y)</i> unique colors which will be used in the first column, which means that the answer will be also multiplied by <i>C(2x-y, x-y)</i>. Then we’ll choose <i>x-y</i> colors for the rightmost column and multiply the answer by <i>C(x, x-y)</i>. Now all we need to know is how many ways of coloring <i>n</i> cells into <i>x</i> colors are there. We’ll use a dynamic programming approach to solve this sub-problem.</span></p> <p class="MsoNormal"><span lang="EN-US">&nbsp;</span></p> <p class="MsoNormal"><span lang="EN-US">Let <i>d[i][j]</i> be the number of ways to color a rectangle of unit width and length <i>i</i> into colors, numerated from 1 to <i>j</i> with the following restriction: if <i>a &lt; b</i> then the first appearence of color <i>a</i> in the rectangle will be before the first appearence of color <i>b</i>. </span><span lang="EN-US"><br> </span><span lang="EN-US">Then we can calculate this function using the following recurrence:</span></p> <p class="MsoNormal"><span lang="EN-US"><i>d[i][j] = j * d[i — 1][j] + d[i — 1][j — 1]</i>. </span></p> <p class="MsoNormal"><span lang="EN-US">After we finish calculating <i>d[i][j]</i>, we need to multiply the answer by <i>d[n][x]<sup>2</sup></i> (to color the first and the last columns). Now we need to notice that we can reorder all colors in the first and the last columns in arbitrary way, which means that the answer should be multiplied by <i>(x!)<sup>2</sup></i>. Finally, we need to multiply the answer by <i>y<sup>n(m-2)</sup></i>, which correspond to coloring the rest of our board.</span></p> <p class="MsoNormal"><span lang="EN-US">&nbsp;</span></p><p></p><p class="MsoNormal"><span lang="EN-US">Here is the code, which solves the problem for the given values of <i>x</i> and <i>y</i>:</span><font class="Apple-style-span" face="Arial"></font></p><p></p><p></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">long</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> <span style="color: blue;">long</span> ans=0;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">for</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> (<span style="color: blue;">int</span> y=0; y&lt;=n; y++){</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">long</span> <span style="color: blue;">long</span> cur=powmod(y,n*(m-2));</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">for</span> (<span style="color: blue;">int</span> x=y; x&lt;=n; x++)</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">if</span> (2*x-y&lt;=k)</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">long</span> <span style="color: blue;">long</span> tek=cnk[2*x-y]; </span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=cnn[2*x-y][x-y], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=cnn[x][x-y], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=d[n][x], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=d[n][x], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=f[x], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=f[x], tek%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tek*=cur;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ans+=tek;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ans%=mod;</span></p> <p class="MsoNormal" style=""><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">}</span></p> <p class="MsoNormal" style=""><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">}</span></p> <p class="MsoNormal"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">cout&lt;&lt;ans&lt;&lt;endl;</span></p><p></p><p class="MsoNormal"><span lang="EN-US">Some contestants had problems with time limit, because of calculation of <i>C(N,K)</i>. One can notice that we won’t need more than <i>2000</i> colors, which reduces the time significantly. Author’s solution worked less than <i>200ms</i> with the time-limit of <i>5s</i>.</span><font class="Apple-style-span" face="Arial"><br></font></p><div><p class="MsoNormal"><font class="Apple-style-span" face="Arial"><span class="Apple-style-span" style="font-size: 20.0px;"><b>Division 1,&nbsp;<a href="//codeforces.com/problemset/problem/111/E">Problem E</a></b></span><br></font></p><p></p> <p class="MsoNormal"><span lang="EN-US">Let the length of the maximal path be S. First, we’ll estimate the value of S without specifying the longest path itself. </span><span lang="EN-US"><br> <br> </span><span lang="EN-US">Let’s color our board into a chess-coloring. Obviously, each two neighboring cells in the path will have different color. Keeping this in mind we can make some estimation on the value of S. For example, if there are 4 white cells and 5 black cells on the board and we know that both starting and ending cells are white, than the length of the path can’t be greater than 7, because white and black cells must alternate in the path. We can write a simple function which calculates the maximal value of S using only the fact described above. Here, n and m are the dimensions of the board, (sx, sy) is the starting cell and (fx, fy) is the ending cell.</span><font class="Apple-style-span" face="Arial"><span lang="EN-US" style="font-size: 12.0pt;font-family: &quot;Times New Roman&quot;;color: black;"><br style=""> </span></font></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">int</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> fnd_ans(<span style="color: blue;">int</span> n,<span style="color: blue;">int</span> m,<span style="color: blue;">int</span> sx,<span style="color: blue;">int</span> sy,<span style="color: blue;">int</span> fx,<span style="color: blue;">int</span> fy){</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">int</span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> col1=((sx+s</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">y</span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">+1)%2); <span style="color: green;">//color of the start cell</span></span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">int</span> col2=((fx+fy+1)%2); <span style="color: green;">//color of the finish cell</span></span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: green;">&nbsp;</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">int</span> cntb=(n*m+1)/2; <span style="color: green;">//the number of black cells</span></span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">int</span> cntw=(n*m)/2; <span style="color: green;">//the number of white cells</span></span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: green;">&nbsp;</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">if</span> (col1==1&amp;&amp;col2==1)</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">return</span><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> cntb*2-1;</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">if</span> (col1==1&amp;&amp;col2==0)</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">return</span> cntw*2;</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">if</span> (col1==0&amp;&amp;col2==1)</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">return</span> cntw*2;</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: blue;">if</span> (col1==0&amp;&amp;col2==0)</span></p> <p class="MsoNormal" style="margin-left: 35.4pt;"><span lang="EN-US" style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;color: blue;">return</span><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;"> 2*cntw-1;</span></p> <p class="MsoNormal" style="text-indent: 35.4pt;"><span style="font-size: 10.0pt;font-family: &quot;Courier New&quot;;">}</span></p><p><span lang="EN-US">It appears that for the constraints mentioned in the statement, this theoretical bound for S is always achievable. All we need is to find the path of the length S. Author solution divides the board into 5 pieces and solves the problem for each piece separately.</span><font class="Apple-style-span" face="Arial"><br></font></p><p class="MsoNormal" style=""><span style="font-family: Arial;"></span></p><p class="MsoNormal" style=""><img src="http://s2.ipicture.ru/uploads/20110907/s8SM2ia6.png">&nbsp;<img src="http://s2.ipicture.ru/uploads/20110907/9Hy5jK42.png"><br></p><p></p> <p class="MsoNormal" style=""><span style="z-index: 5;margin-left: 336.0px;margin-top: 35.0px;width: 173.0px;height: 197.0px;"></span><span style="z-index: 4;"><span style="left: 392.0px;top: -387.0px;width: 12.0px;height: 27.0px;"></span></span><span style="z-index: 3;margin-left: 306.0px;margin-top: 689.0px;width: 170.0px;height: 2.0px;"></span></p><p></p><p class="MsoNormal" style=""></p><p class="MsoNormal" style=""><span lang="EN-US">Let’s divide the board into 5 parts as it was shown on the first picture. We’ll assume that the relative location of the starting and ending cells is the same as on the picture. In each part we’ll try to build a longest path which completely belongs to it. For the first part we’ll try to build a path from the upper-right corner to the upper-left corner. Similar rules will hold for all other parts (see the picture above for further clarification). Paths can be different for different boards, but they will have similar structure. One can notice that there are only two types of paths (with respect to rotations of the board): the one which starts at the upper-left corner and ends at the bottom-right corner and the one which starts at the upper-left corner and ends at the upper-right corner. Now we can write down an algorithm:</span><span lang="EN-US"><br> <br> </span><span lang="EN-US">1) Divide the board into 5 parts.</span><span lang="EN-US"><br> </span><span lang="EN-US">2) Find the longest path in each of the parts.</span><span lang="EN-US"><br> </span><span lang="EN-US">3) Check if the total length is equal to S.</span><span lang="EN-US"><br> </span><span lang="EN-US">4) If the above is false, then rotate or reflect the board and continue to the step 1.</span><span lang="EN-US"><br> <br> </span><span lang="EN-US">In order to find the longest path in a particular part, one can either consequently move through all rows of the part or through all its columns.</span><span lang="EN-US"><br> <br> </span><span lang="EN-US">This solution gives correct answers for all <span class="tex-span">4 ≤ <i>n</i>, <i>m</i> ≤ 20</span>. All possible cases of parity of each part are feasible within those constraints, which means that the solution will work for all boards, including ones with n &gt; 20 or m &gt; 20. The overall complexity of described algorithm is <i>O(N*M)</i>.</span><font class="Apple-style-span" face="Arial"><br></font></p><p></p></div><p></p></div>
+
+    </div>
+
+
+        <div style="font-size: 1.1rem;line-height: 1.1rem;padding-bottom: 0.5em;">
+            <img src="//codeforces.com/codeforces.org/s/23517/images/icons/paperclip-16x16.png" style="vertical-align: middle;"> <span style="padding: 0 0.35em;">Tutorial of <a href="/contest/112" class="notice" style="text-decoration: none;">Codeforces Beta Round 85 (Div. 2 Only)</a> </span>
+        </div>
+        
+            <script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete-resource-link-140-2619").click(function() {
+            var that = this;
+            Codeforces.confirm("Are you sure you want to detach a contest?", function () {
+                $.post("/data/blogAndContest", {
+                    action: "detachBlogFromContest",
+                    blogId: "140",
+                    blogEntryId: "2616",
+                    contestId: $(that).attr("data-contestId"),
+                    resourceIds: $(that).attr("data-resourceIds")
+                }, function(json) {        
+                    Codeforces.reloadAndShowMessageOrShowError(json, "Contest detached");
+                });
+            }, function () {}, "Yes", "No");
+        });
+    });
+</script>
+        
+
+        <div style="font-size: 1.1rem;line-height: 11px;">
+            <img style="vertical-align: middle;" src="//codeforces.com/codeforces.org/s/23517/images/blog/tags.png" title="Tags" alt="Tags">
+                <span style="padding: 0 0.35em;">
+    <a href="/search?query=editorial" class="tag notice" style="text-decoration: none;">editorial</a>
+                </span>
+        </div>
+
+
+    <div class="roundbox meta borderTopRound borderBottomRound" style="">
+        <div class="left-meta">
+            <ul>
+                    <li style="line-height: 1.6em;">        <a href="#" class="topic-vote-up-2619"><img style="vertical-align:middle;position:relative;top:-0.2em" src="//codeforces.com/codeforces.org/s/23517/images/actions/voteup-gray.png" alt="Vote: I like it" title="Vote: I like it"></a>
+
+
+</li>
+                    <li style="line-height: 1.6em;">
+
+        
+        <span class="topic-rating topic-rating-2619" title="Topic rating" data-topicid="2619" data-rawrating="0" style="font-size:larger;position:relative;bottom:1px;font-weight:bold;color:gray">0</span>
+        
+</li>
+                    <li style="line-height: 1.6em;">        <a href="#" class="topic-vote-down-2619"><img style="vertical-align:middle;position:relative;top:-0.2em" src="//codeforces.com/codeforces.org/s/23517/images/actions/votedown-gray.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+
+
+</li>
+            </ul>
+        </div>
+
+
+            <span style="position: relative; line-height: 1.65em; top: 0.75rem; left: 0.8em;">
+            </span>
+
+        <div class="right-meta">
+            <ul>
+                    <li>        <a href="/profile/Seyaua"><img style="vertical-align:middle;position:relative;top:-1px" src="//codeforces.com/codeforces.org/s/23517/images/blog/user_16x16.png" alt="Author" title="Author"></a>
+
+
+        <a href="/profile/Seyaua">
+        Seyaua
+        </a>
+</li>
+                    <li>        <img style="vertical-align:middle;position:relative;top:-1px" src="//codeforces.com/codeforces.org/s/23517/images/blog/date_16x16.png" alt="Publication date" title="Publication date">
+
+
+        
+        <span class="format-humantime" title="Sep/07/2011 10:24 UTC+2">15 years ago</span>
+        
+</li>
+                    <li>        <a href="/blog/entry/2616#comments"><img style="vertical-align:middle;position:relative;top:-1px" src="//codeforces.com/codeforces.org/s/23517/images/blog/comments_16x16.png" alt="Comments" title="Comments"></a>
+
+
+        <a href="/blog/entry/2616#comments">
+        15
+        </a>
+</li>
+            </ul>
+        </div>
+
+        <br style="clear:both;">
+    </div>
+
+
+<style type="text/css">
+    .comments .title {
+        float: left;
+    }
+
+    .comments .comments-actions-div {
+        float: right;
+        margin-top: 3rem;
+        margin-right: 0.5em;
+    }
+
+    .comments .comments-actions-div .separator {
+        margin: 0 1rem;
+    }
+
+    .comments label.show-archived {
+    }
+
+    .comments label.show-archived, .comments label.show-archived * {
+        font-size: 1.4rem !important;
+        color: black !important;
+        /*position: relative !important;*/
+        /*bottom: 0.4rem !important;*/
+    }
+
+    .comments label.show-archived input {
+        height: 1.4rem !important;
+        width: 1.4rem !important;
+        position: relative;
+        top: 0.25rem;
+    }
+
+    .new-root-comment {
+        font-size: 1.4rem !important;
+    }
+</style>
+
+    <div class="comments" commentableid="2629">
+        <div style="display: flow-root">
+            <div class="title">
+                <img src="//codeforces.com/codeforces.org/s/23517/images/icons/comments-48x48.png" alt="Comments" title="Comments" style="position:relative;top:0.6em;">
+                <a name="comments">Comments (9)</a>
+
+            </div>
+            <div class="comments-actions-div">
+                    <label class="show-archived">
+                        <input type="checkbox" class="show-archived-checkbox">
+                        Show archived
+                    </label>
+                    <span class="separator">|</span>
+                <a href="#" class="new-root-comment">Write comment?</a>
+            </div>
+        </div>
+
+<div class="comment" commentid="54489">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="54489" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                     <div class="avatar"><a href="/profile/hacker007" title="Specialist hacker007" class="rated-user user-cyan">hacker007</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Sep/08/2011 20:34 UTC+2">15 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="54489" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+    <div class="avatar">
+        <a href="/profile/hacker007" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/no-avatar.jpg">        </a>
+        <div><a href="/profile/hacker007" title="Specialist hacker007" class="rated-user user-cyan">hacker007</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Sep/08/2011 20:34 UTC+2">15 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-54489" href="?#comment-54489" style="font-size:1.2em;">#</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="54489" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="2067" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-54489">
+                        <div class="moveup">
+                        <div class="ttypography">Thanks for sharing the analysis. Waiting for the other problems, especially Div I problem C, please explain it&nbsp;throughly.<div>The pictures are invisible, please fix it.<div>Pretty nice problemsets, short and clear statements, I like it very much.</div></div></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-54489 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-54489 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-54489">
+        </ul>
+    </div>
+</div>
+
+<div class="comment" commentid="413135">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="413135" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/ghoshsai5000" title="Pupil ghoshsai5000" class="rated-user user-green">ghoshsai5000</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Feb/09/2018 17:01 UTC+2">8 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="413135" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/ghoshsai5000" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/no-avatar.jpg">        </a>
+        <div><a href="/profile/ghoshsai5000" title="Pupil ghoshsai5000" class="rated-user user-green">ghoshsai5000</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Feb/09/2018 17:01 UTC+2">8 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-413135" href="?#comment-413135" style="font-size:1.2em;">#</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="413135" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="543439" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-413135">
+                        <div class="moveup">
+                        <div class="ttypography"><p>Can you please provide a proof that in Div 2 B, a line must cross the central square ?</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-413135 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-413135 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-413135">
+        </ul>
+    </div>
+</div>
+
+<div class="comment" commentid="428806">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="428806" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/ghoshsai5000" title="Pupil ghoshsai5000" class="rated-user user-green">ghoshsai5000</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="May/06/2018 15:17 UTC+2">8 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="428806" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/ghoshsai5000" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/no-avatar.jpg">        </a>
+        <div><a href="/profile/ghoshsai5000" title="Pupil ghoshsai5000" class="rated-user user-green">ghoshsai5000</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="May/06/2018 15:17 UTC+2">8 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-428806" href="?#comment-428806" style="font-size:1.2em;">#</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="428806" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="543439" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-428806">
+                        <div class="moveup">
+                        <div class="ttypography"><p>In case, anybody wants a more detailed analysis of Div 2 C, I have written a post about it <a href="https://qr.ae/TUTncY">here</a>. </p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-428806 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-428806 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-428806">
+        </ul>
+    </div>
+</div>
+
+<div class="comment" commentid="485935">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="485935" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/adi_das" title="Pupil adi_das" class="rated-user user-green">adi_das</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jan/21/2019 00:43 UTC+2">7 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show (+<span class="hidden-children">4</span>)</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="485935" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/adi_das" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/217511/avatar/1be386b6ad5834e7.jpg">        </a>
+        <div><a href="/profile/adi_das" title="Pupil adi_das" class="rated-user user-green">adi_das</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jan/21/2019 00:43 UTC+2">7 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-485935" href="?#comment-485935" style="font-size:1.2em;">#</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="485935" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="217511" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-485935">
+                        <div class="moveup">
+                        <div class="ttypography"><p>worst editorial ever for Div2 D</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-485935 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-485935 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-485935">
+                <li>
+<div class="comment" commentid="539171">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="539171" commentparentid="485935">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/XenonHexaflouride" title="Newbie XenonHexaflouride" class="rated-user user-gray">XenonHexaflouride</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Aug/29/2019 11:26 UTC+2">7 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show (+<span class="hidden-children">3</span>)</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="539171" commentparentid="485935">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/XenonHexaflouride" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/no-avatar.jpg">        </a>
+        <div><a href="/profile/XenonHexaflouride" title="Newbie XenonHexaflouride" class="rated-user user-gray">XenonHexaflouride</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Aug/29/2019 11:26 UTC+2">7 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-539171" href="?#comment-539171" style="font-size:1.2em;">#</a></span>
+                            <span class="item"><a title="Parent comment" href="#comment-485935" style="font-size:1.2em;">^</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="539171" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="534616" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-539171">
+                        <div class="moveup">
+                        <div class="ttypography"><p>I think so</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-539171 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-539171 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-539171">
+                <li>
+<div class="comment" commentid="634586">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="634586" commentparentid="539171">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/Mani" title="Candidate Master Mani" class="rated-user user-violet">Mani</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jun/02/2020 08:47 UTC+2">6 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show (+<span class="hidden-children">2</span>)</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="634586" commentparentid="539171">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/Mani" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/749788/avatar/edfb8eec6df3d714.jpg">        </a>
+        <div><a href="/profile/Mani" title="Candidate Master Mani" class="rated-user user-violet">Mani</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jun/02/2020 08:47 UTC+2">6 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-634586" href="?#comment-634586" style="font-size:1.2em;">#</a></span>
+                            <span class="item"><a title="Parent comment" href="#comment-539171" style="font-size:1.2em;">^</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="634586" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="749788" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-634586">
+                        <div class="moveup">
+                        <div class="ttypography"><p>Yes I think the editorial for Div2 D Petya and Divisors, is not clear enough, So I will try to explain it a bit for anyone who comes after me.</p><p>Since the elements are only in range 1 to 100000, the possible divisors will be in that range, we can create an array used[] , where <code class="tt">used[j]</code> will tell what was the last index when we encountered a X with j as one of its divisors.</p><p>We can initialize used[] with -1. </p><p>Now for an Xi, we can iterate over all its divisors, for a divisor d, we can check that if <code class="tt">used[d]==-1</code> (not encountered this divisor until now) or <code class="tt">used[d]&lt;i-y</code> (it was last encountered outside of [x-1,x-y] range), we need to count these cases. Also take care of cases when y==0.</p><p>After that, we will update used[d]=idx</p><p>code=&gt; <a href="https://codeforces.com/contest/111/submission/82272791">https://codeforces.com/contest/111/submission/82272791</a></p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-634586 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-634586 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-634586">
+                <li>
+<div class="comment" commentid="653765">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="653765" commentparentid="634586">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/7EVEN" title="Expert 7EVEN" class="rated-user user-blue">7EVEN</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jul/01/2020 08:58 UTC+2">6 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show (+<span class="hidden-children">1</span>)</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="653765" commentparentid="634586">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/7EVEN" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/1203475/avatar/ee041c503aec352c.jpg">        </a>
+        <div><a href="/profile/7EVEN" title="Expert 7EVEN" class="rated-user user-blue">7EVEN</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Jul/01/2020 08:58 UTC+2">6 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-653765" href="?#comment-653765" style="font-size:1.2em;">#</a></span>
+                            <span class="item"><a title="Parent comment" href="#comment-634586" style="font-size:1.2em;">^</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="653765" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="1203475" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-653765">
+                        <div class="moveup">
+                        <div class="ttypography"><p>Why this code is not giving TLE O(Nsqrt(N)) ?</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-653765 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-653765 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-653765">
+                <li>
+<div class="comment" commentid="871352">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="871352" commentparentid="653765">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/aditya_01" title="Expert aditya_01" class="rated-user user-blue">aditya_01</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Dec/26/2021 05:48 UTC+2">4 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="871352" commentparentid="653765">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/aditya_01" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/1544106/avatar/b90b938b38192cad.jpg">        </a>
+        <div><a href="/profile/aditya_01" title="Expert aditya_01" class="rated-user user-blue">aditya_01</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="Dec/26/2021 05:48 UTC+2">4 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-871352" href="?#comment-871352" style="font-size:1.2em;">#</a></span>
+                            <span class="item"><a title="Parent comment" href="#comment-653765" style="font-size:1.2em;">^</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="871352" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="1544106" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-871352">
+                        <div class="moveup">
+                        <div class="ttypography"><p>because n=1e5 so nsqrt(n)=1e7.5 which can be done easily.Correct me if i am wrong.</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-871352 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-871352 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-871352">
+        </ul>
+    </div>
+</div>
+</li>
+        </ul>
+    </div>
+</div>
+</li>
+        </ul>
+    </div>
+</div>
+</li>
+        </ul>
+    </div>
+</div>
+</li>
+        </ul>
+    </div>
+</div>
+
+<div class="comment" commentid="797009">
+    <div class="hidden-comment" style="display: none;">
+        <table class="comment-table" commentid="797009" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                        <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                                <div class="comment-no-indent">
+                                    <span>»</span>
+                                </div>
+                        </div>
+                     <div class="avatar"><a href="/profile/Dhanush_7" title="Expert Dhanush_7" class="rated-user user-blue">Dhanush_7</a></div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="May/29/2021 08:24 UTC+2">5 years ago</span>,</span>
+                        <span class="item"><a href="#" class="showComment">show</a></span>
+                        <span class="item" style="visibility: hidden"><a style="font-size:1.2em;">#</a></span>
+
+                        <div style="position:absolute;right:0;top:0;">
+                            <div class="commentVoteFrameHolder">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+    <div class="shown-comment">
+        <table class="comment-table" commentid="797009" commentparentid="-1">
+            <tbody><tr>
+                <td class="left">
+                    <div style="position: absolute; left: 0;" class="comment-indent-holder">
+                            <div class="comment-no-indent">
+                                <span>»</span>
+                            </div>
+                    </div>
+    <div class="avatar">
+        <a href="/profile/Dhanush_7" style="position: relative;">
+<img src="https://codeforces.com/userpic.codeforces.org/no-avatar.jpg">        </a>
+        <div><a href="/profile/Dhanush_7" title="Expert Dhanush_7" class="rated-user user-blue">Dhanush_7</a></div>
+    </div>
+                </td>
+                <td class="right">
+                    <div class="info">
+                        
+                        <span class="item"><span class="format-humantime" title="May/29/2021 08:24 UTC+2">5 years ago</span>,</span>
+                        <span class="item"><a href="#" class="hideComment">hide</a></span>
+                        <span class="item"><a title="Link to comment" id="comment-797009" href="?#comment-797009" style="font-size:1.2em;">#</a></span>
+                        <span class="item">|</span>
+                        <span style="position: relative; top: 2px;">
+</span>
+                        <div style="position:absolute;right:0;top:0;">
+                            &nbsp;
+                            <div class="commentVoteFrameHolder">
+
+<span commentid="797009" class="CommentVoteFrame" myvotedirection="0" data-commentrating="0" data-commentuserid="1550210" style="position:relative;">
+<a href="#" class="vote-for-comment" votedirection="1" dd="x"><img style="position:relative;top:3px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-voteup-blue.png" alt="Vote: I like it" title="Vote: I like it"></a>
+<span class="commentRating"><span style="color:gray;font-weight:bold;">0</span></span>
+<a href="#" class="vote-for-comment" votedirection="-1" dd="y"><img style="position:relative;top:2px;opacity:0.35;" src="//codeforces.com/codeforces.org/s/23517/images/actions/comment-votedown-blue.png" alt="Vote: I do not like it" title="Vote: I do not like it"></a>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-content comment-content-797009">
+                        <div class="moveup">
+                        <div class="ttypography"><p>Thanks. good editorial</p></div>
+                        </div>
+                    </div>
+                    <div class="reply info">
+                        <a class="comment-797009 en false" href="#" style="text-decoration: none;"><span class="arrow">→</span></a>
+                        <a class="comment-797009 en false" href="#">Reply</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <ul class="comment-children comment-797009">
+        </ul>
+    </div>
+</div>
+        <br>
+
+<div id="editBox-2629" style="width:50em;display:none;">
+    <div class="previewBody" style="border: 1px solid #d4d4d4; margin-bottom: 0.5em; padding: 0.25em; display:none;">&nbsp;</div>
+    <div style="width: 1px">&nbsp;</div>
+    <div class="commentLocale" style="position: relative; top: 0.5em;left:4px;display: none;">
+        <input type="radio" name="locale" value="en"><span style="font-size: 1.2rem;position: relative; bottom: 3px;">In English</span>
+        <input style="margin-left:1em" type="radio" name="locale" value="ru"><span style="font-size: 1.2rem;position: relative; bottom: 3px;">In Russian</span>
+    </div>
+    <textarea data-drafts-id="CommentReplyFrame" class="wysiwyg" name="editContent" rows="20" style="width:99%;"></textarea>
+    <div class="error error__content"></div>
+    <div style="text-align:center;">
+        <input type="button" name="preview" style="padding: 0.25em 1em; margin-top: 1em; min-width: 6.5em;" value="Preview">
+        <input type="button" name="save" style="padding: 0.25em 1em; margin-top: 1em; min-width: 6.5em;" value="Save">
+    </div>
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+var firstPreview2629 = true;
+var lastPreviewContent2629 = '';
+
+if (!window.moveCommentRevision) {
+    moveCommentRevision = function(e, dir) {
+        var p = e.parent();
+        var revisionCount = parseInt(p.attr("revisionCount"));
+        var revision = parseInt(p.attr("revision"));
+        var next = revision + dir;
+        var commentId = p.attr("commentId");
+        if (next >= 1 && next <= revisionCount) {
+            $.post(
+                "/data/comment-data",
+                {action: "revision", commentId: commentId, revision: next},
+                function(json) {
+                    if (json.success == "true") {
+                        var parentDiv = e;
+
+                        while (parentDiv !== null && (parentDiv[0].nodeName.toLowerCase() !== "td" || !parentDiv.hasClass("right"))) {
+                            parentDiv = parentDiv.parent();
+                        }
+
+                        if (parentDiv === null) {
+                            return;
+                        }
+
+                        parentDiv.find("div.comment-content-" + commentId + " .moveup").html(json.content);
+                        Codeforces.setupSpoilers(parentDiv.find("div.comment-content-" + commentId + " .moveup"));
+                        p.attr("revision", next);
+                        p.find("span.revision").text(next);
+                        if (next == 1) {
+                            p.find("a.leftRevision").css("visibility", "hidden");
+                        } else {
+                            p.find("a.leftRevision").css("visibility", "visible");
+                        }
+                        if (next == revisionCount) {
+                            p.find("a.rightRevision").css("visibility", "hidden");
+                        } else {
+                            p.find("a.rightRevision").css("visibility", "visible");
+                        }
+
+                        window.updateTypography();
+                        MathJax.Hub.Typeset();
+                    } else {
+                        alert(e.error);
+                    }
+                },
+                "json"
+            );
+        }
+    };
+}
+
+$("div[commentableId=2629] a.leftRevision").click(function () {
+    window.moveCommentRevision($(this), -1);
+    return false;
+});
+
+$("div[commentableId=2629] a.rightRevision").click(function () {
+    window.moveCommentRevision($(this), +1);
+    return false;
+});
+
+
+
+        });
+    </script>
+
+
+        <script type="text/javascript">
+            $(function() {
+                window._ftaa = "3m09xqxaafaio286qh";
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                window._bfaa = "a2f413eda67a1c3e6718490c0ab6f774";
+            });
+        </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+    $("a.new-root-comment").click(function () {
+            window.location = "/enter";
+        return false;
+    });
+
+    $(".comment-table .reply a").click(function () {
+            window.location = "/enter";
+        return false;
+    });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+    function updateImg(element, direction, activated) {
+        var votedDirection = element.closest(".CommentVoteFrame").attr("myVoteDirection");
+        var directionString = direction == 1 ? "up" : "down";
+        element.attr("src", "//codeforces.com/codeforces.org/s/23517/images/actions/comment-vote" + directionString + (activated ? "" : "-blue") + ".png");
+        element.css("opacity", activated ? "1.0" : "0.35");
+        var title;
+        if (votedDirection == direction) {
+            title = "Cancel vote";
+        } else if (direction == 1) {
+            title = "Vote: I like it";
+        } else {
+            title = "Vote: I do not like it";
+        }
+        element.attr("alt", title);
+        element.attr("title", title);
+    }
+
+    $(".vote-for-comment").mouseover(function () {
+        var vote = $(this);
+        var voteFrame = $(this).closest(".CommentVoteFrame");
+        var direction = vote.attr("voteDirection");
+        var commentUserId = $(this).parent().attr("data-commentUserId");
+        var ownComment = false;
+        if (!ownComment) {
+            updateImg(vote.find("img"), direction, true);
+        }
+    });
+
+    $(".vote-for-comment").mouseout(function () {
+        var vote = $(this);
+        var voteFrame = $(this).closest(".CommentVoteFrame");
+        var direction = vote.attr("voteDirection");
+        var myVoteDirection = voteFrame.attr("myVoteDirection");
+        var commentUserId = $(this).parent().attr("data-commentUserId");
+        var ownComment = false;
+        if (myVoteDirection != direction && !ownComment) {
+            updateImg(vote.find("img"), direction, false);
+        }
+    });
+
+    $(".vote-for-comment").click(function () {
+        if ($(this).closest(".hidden-comment").length) {
+            Codeforces.showMessage("Show the comment before voting");
+            return;
+        }
+        var vote = $(this);
+        var voteFrame = $(this).closest(".CommentVoteFrame");
+        var commentId = $(this).parent().attr("commentid");
+        var commentRating = $(this).parent().attr("data-commentRating");
+        var myVoteDirection = voteFrame.attr("myVoteDirection");
+        var direction = $(this).attr("voteDirection");
+        var newDirection = direction;
+        if (direction == myVoteDirection) {
+            newDirection = 0; // Clicking same direction twice cancels the vote
+        }
+        var commentUserId = $(this).parent().attr("data-commentUserId");
+        var ownComment = false;
+        $.post("/data/comment/vote", {commentId: commentId, _tta: Codeforces.tta(), vote: newDirection, commentRating: commentRating}, function(data) {
+            if (data["success"] == "true") {
+                voteFrame.attr("myVoteDirection", newDirection);
+                updateImg(voteFrame.find("[voteDirection=-1]>img"), -1, newDirection == -1);
+                updateImg(voteFrame.find("[voteDirection=1]>img"), 1, newDirection == 1);
+                if (newDirection == -1) {
+                    voteFrame.find(".ComplaintFrame").css("display", "inline-block");
+                } else {
+                    voteFrame.find(".ComplaintFrame").hide();
+                }
+                vote.parent().find(".commentRating").html(data["commentRating"]);
+            }
+            Codeforces.showMessage(data["message"]);
+        }, "json");
+        return false;
+    });
+
+    $(".negative-comment-vote").closest(".comment-table").addClass("comment-bad");
+
+    $(".troll-comment-vote").closest(".comment").css("display", "none");
+
+    $(".too-negative-comment-vote").closest(".comment-table").each(function () {
+        var e = $(this);
+        e.addClass("comment-too-bad");
+        var commentId = e.attr("commentId");
+        $("<div class='bad-comment-replacement ttypography'>The comment is hidden because of too negative feedback, click <a href=# class=show-bad-comment-link>here</a> to view it</div>").appendTo(
+            e.find(".right")
+        );
+        e.find(".comment-content").hide();
+        e.find(".show-bad-comment-link").click(function () {
+            e.find(".comment-content").show();
+            e.find(".bad-comment-replacement").hide();
+            return false;
+        });
+    });
+        });
+    </script>
+    </div>
+
+    <style type="text/css">
+        .new-comments-box {
+            padding: 0.5em;
+            width: 22px;
+            font-size: 1.3rem;
+            font-weight: bold !important;
+
+            position: fixed;
+            top: 40%;
+            right: 0;
+            opacity: 0.2;
+            color: white;
+            text-align: center;
+
+            border: 1px solid #222;
+            background-color: #888 !important;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+        }
+
+        .new-comments-box:hover {
+            opacity: 1;
+        }
+
+        .new-comments-box .dir:hover {
+            background: #3B5998 !important;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="new-comments-box" data-position="outside" data-index="-1" style="display: none;">
+        <div class="up dir" title="Ctrl+Up">↑<hr>
+        </div>
+        <div class="info" title="New comments"></div>
+        <div class="down dir" title="Ctrl+Down">
+            <hr>↓
+        </div>
+    </div>
+
+    <script>
+        function makeSureElementIsShown(target) {
+            let e = target;
+            while (true) {
+                e = e.parent().closest(".comment");
+                if (e.length === 0) {
+                    break;
+                }
+                e.find(">.hidden-comment").hide();
+                e.find(">.shown-comment").show();
+            }
+        }
+
+        $(function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const target = $(hash);
+                if (target) {
+                    makeSureElementIsShown(target);
+                    setTimeout(() => target.scrollIntoView());
+                }
+            }
+        });
+
+        $(".show-archived-checkbox").change(function () {
+            const checked = $(this).is(":checked");
+            $.post("/data/comment-data", {action: "setShowArchived", checked}, function (json) {
+                if (json["success"] !== "true") {
+                    alert(json["error"]);
+                } else {
+                    if (checked) {
+                        Codeforces.reloadAndShowMessage("Archived comments are now displayed")
+                    } else {
+                        Codeforces.reloadAndShowMessage("Archived comments are no longer displayed")
+                    }
+                }
+            });
+            return false;
+        });
+
+        function gotoComment(direction) {
+            var box = $(".new-comments-box");
+            var index = parseInt(box.attr("data-index"));
+            if (index == -1)
+                index = 0;
+            else
+                index = Math.max(0, Math.min(parseInt(box.find(".info").text()) - 1, index + direction));
+            box.attr("data-index", index);
+            var comment = $($(".comment>.shown-comment>.highlight-blue[commentId]").get(index));
+            makeSureElementIsShown(comment);
+            $('html, body').animate({
+                'scrollTop': Math.max(0, comment.offset().top - ($(window).height() - comment.height()) / 2)
+            });
+            return false;
+        }
+
+        $(".new-comments-box .down").click(function () {
+            return gotoComment(1);
+        });
+
+        $(".new-comments-box .up").click(function () {
+            return gotoComment(-1);
+        });
+
+        $(document).keydown(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (e.ctrlKey) {
+                if (code == 38 || code == 40) {
+                    gotoComment(code - 39);
+                }
+            }
+        });
+
+        var newCommentCount = $(".comment>.shown-comment>.highlight-blue[commentId]").length;
+        if (newCommentCount > 0) {
+            $(".new-comments-box .info").text(newCommentCount);
+            $(".new-comments-box").show();
+        }
+
+        $('table.comment-table').mouseenter(function () {
+            var comment = $(this);
+            var cnt = 0;
+            while (true) {
+                var id = comment.attr("commentId");
+                var parentId = comment.attr("commentParentId");
+                comment.find(".comment-indent-holder:first .comment-no-indent").addClass("comment-indent");
+                if (parentId == -1) {
+                    break;
+                }
+                comment = $("table.comment-table[commentId=" + parentId + "]");
+            }
+            return false;
+        });
+
+        $('table.comment-table').mouseleave(function () {
+            var comment = $(this);
+            var cnt = 0;
+            while (true) {
+                var id = comment.attr("commentId");
+                var parentId = comment.attr("commentParentId");
+                comment.find(".comment-indent-holder:first .comment-no-indent").removeClass("comment-indent");
+                if (parentId == -1) {
+                    break;
+                }
+                comment = $("table.comment-table[commentId=" + parentId + "]");
+            }
+            return false;
+        });
+
+        const commentVoteFrameHolderSelector = ">.comment-table .commentVoteFrameHolder";
+        $(".hidden-comment").each(function() {
+            const comment = $(this).closest(".comment");
+            $(this).find(".hidden-children").text(comment.find(".comment").length);
+        });
+        $('.hideComment').click(function () {
+            const comment = $(this).closest(".comment");
+            const shownComment = comment.find("> .shown-comment");
+            const hiddenComment = comment.find("> .hidden-comment");
+            shownComment.hide();
+            hiddenComment.show();
+            shownComment.find(commentVoteFrameHolderSelector).children()
+                .appendTo(hiddenComment.find(commentVoteFrameHolderSelector));
+            return false;
+        });
+        $('.showComment').click(function () {
+            const comment = $(this).closest(".comment");
+            const hiddenComment = comment.find("> .hidden-comment");
+            const shownComment = comment.find("> .shown-comment");
+            hiddenComment.hide();
+            shownComment.show();
+            hiddenComment.find(commentVoteFrameHolderSelector).children()
+                .appendTo(shownComment.find(commentVoteFrameHolderSelector));
+            return false;
+        });
+    </script>
+
+
+
+    <script>
+        function adjustTopicComplainFrames() {
+            let topicIds = [];
+
+            $(".has-topic-id").each(function () {
+                const $this = $(this);
+                const topicId = $this.attr("topicId");
+                if (topicId) {
+                    topicIds.push(topicId);
+                }
+            });
+
+            $.post("/data/topics", {
+                action: "findComplainableTopicIds",
+                topicIds: topicIds.join(",")
+            }, function (json) {
+                if (json["success"] === "true") {
+                    for (const topicId of json["complainableTopicIds"].split(",")) {
+                        $(".has-topic-id[topicId=" + topicId + "]").each(function () {
+                            $(this).find(".meta .ComplaintFrame").css("display", "inline-block");
+                        });
+                    }
+                }
+            }, "json");
+        }
+
+        function updateTopicVote(topicId, voteDirection, processed) {
+            let ratingElement = $(".topic-rating-" + topicId);
+            let newRating = parseInt(ratingElement.attr("data-rawRating"));
+            if (!processed) newRating += voteDirection;
+            if (newRating > 0) {
+                ratingElement.text("+" + newRating.toString());
+                ratingElement.css("color", "green");
+            } else {
+                ratingElement.text(newRating.toString());
+                ratingElement.css("color", "gray");
+            }
+            let voteUpImg = $(".topic-vote-up-" + topicId + " img");
+            voteUpImg.attr("src", "//codeforces.com/codeforces.org/s/23517/"
+                + (voteDirection === 1 ? "images/actions/voteup-voted.png" : "images/actions/voteup-gray.png"));
+            voteUpImg.attr("title", voteDirection === 1 ? "Cancel vote" : "Vote: I like it");
+            let voteDownImg = $(".topic-vote-down-" + topicId + " img");
+            voteDownImg.attr("src", "//codeforces.com/codeforces.org/s/23517/"
+                + (voteDirection === -1 ? "images/actions/votedown-voted.png" : "images/actions/votedown-gray.png"));
+            voteDownImg.attr("title", voteDirection === -1 ? "Cancel vote" : "Vote: I do not like it");
+        }
+
+        function getMyVotes() {
+            let topicIds = [];
+            $(".topic-rating").each(function () {
+                topicIds.push($(this).attr("data-topicId"))
+            });
+            $.post("/data/topic/vote", {
+                topicIds: topicIds.join(","),
+                _tta: Codeforces.tta(),
+                action: "getMyVotes"
+            }, function (data) {
+                if (data.success === "true") {
+                    votes = JSON.parse(data.votes);
+                    for (const vote of votes) {
+                        updateTopicVote(vote.topicId, vote.direction, vote.processed);
+                    }
+                }
+            }, "json");
+        }
+
+        $(function () {
+        });
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        let voteDirection = 0;
+
+        function clickVote(direction) {
+            if (direction === voteDirection) {
+                direction = 0;
+            }
+            $.post("/data/topic/vote", {
+                topicId: 2619,
+                _tta: Codeforces.tta(),
+                topicRevisionId: 130928,
+                vote: direction,
+            }, function (data) {
+                if (data.success === "true") {
+                    voteDirection = parseInt(data.voteDirection);
+                    updateTopicVote(2619, voteDirection, data.processed === "true");
+                }
+                Codeforces.showMessage(data.message);
+            }, "json");
+        }
+
+        $(".topic-vote-up-2619").click(function () {
+            clickVote(+1);
+            return false;
+        });
+        $(".topic-vote-down-2619").click(function () {
+            clickVote(-1);
+            return false;
+        });
+    });
+</script></div>
+
+    <script>
+        $(function () {
+            $(".topic-action-a").click(function () {
+                const action = $(this).data("action");
+                const topicTitle = $(this).data("topic-title");
+
+                if (confirm("Are you sure you want to perform the action '" + action.toUpperCase()
+                        + "' on the topic '" + topicTitle + "'?")) {
+                    const topicId = $(this).data("topic-id");
+                    const locale = $(this).data("topic-locale");
+                    $.post("/data/topic", {action, topicId, locale}, function (json) {
+                        Codeforces.reloadAndShowMessageOrShowError(json, json["message"]);
+                    });
+                }
+
+                return false;
+            });
+        });
+    </script>
+        </div>
+    </div>
+                </div>
+        </div>
+            <br style="clear: both;">
+            <div id="footer">
+                <div><a href="https://codeforces.com/">Codeforces</a> (c) Copyright 2010-2026 Mike Mirzayanov</div>
+                <div>The only programming contests Web 2.0 platform</div>
+                    <div>Server time: Mar/26/2026 10:21:53<sup title="timezone offset" style="font-size:8px;">UTC+2</sup> (l2).</div>
+                    <div>Desktop version, switch to <a rel="nofollow" class="switchToMobile" href="?mobile=true">mobile version</a>.</div>
+                <div class="smaller">
+                    <a href="/privacy">Privacy Policy</a>
+                    |
+                    <a href="/terms">Terms and Conditions</a>
+                </div>
+
+                    <div style="margin-top: 25px;">
+                        Supported by
+                    </div>
+                        <div style="text-align: center; margin-top: 8px;">
+                            <a href="https://ton.org/"><img style="width: 60px;" src="//codeforces.com/codeforces.org/s/23517/images/ton-100x100.png" alt="TON" title="TON"></a>
+                        </div>
+            </div>
+        <script type="text/javascript">
+            $(function() {
+                $(".switchToMobile").click(function() {
+                    Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", "true"));
+                    return false;
+                });
+                $(".switchToDesktop").click(function() {
+                    Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", "false"));
+                    return false;
+                });
+            });
+        </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($(window).width() < 1600) {
+                $('.button-up').css('width', '30px').css('line-height', '30px').css('font-size', '20px');
+            }
+
+            if ($(window).width() >= 1200) {
+                $ (window).scroll (function () {
+                    if ($ (this).scrollTop () > 100) {
+                        $ ('.button-up').fadeIn();
+                    } else {
+                        $ ('.button-up').fadeOut();
+                    }
+                });
+
+                $('.button-up').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 500);
+                    return false;
+                });
+
+                $('.button-up').hover(function () {
+                    $(this).animate({
+                        'opacity':'1'
+                    }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+                }, function () {
+                    $(this).animate({
+                        'opacity':'0.7'
+                    }).css({'background':'none','color':'#d3dbe4'});;
+                });
+            }
+
+            Codeforces.focusOnError();
+
+            Codeforces.setCopiedToClipboardText("Copied to clipboard");
+            Codeforces.listenCopyable();
+        });
+    </script>
+    <div class="userListsFacebox" style="display:none;">
+        <div style="padding: 0.5em; width: 600px; max-height: 200px; overflow-y: auto">
+<div class="datatable" style="background-color: #E1E1E1; padding-bottom: 3px;">
+            <div class="lt">&nbsp;</div>
+            <div class="rt">&nbsp;</div>
+            <div class="lb">&nbsp;</div>
+            <div class="rb">&nbsp;</div>
+
+            <div style="padding: 4px 0 0 6px;font-size:1.4rem;position:relative;">
+                User lists
+
+                <div style="position:absolute;right:0.25em;top:0.35em;">
+                    <span style="padding:0;position:relative;bottom:2px;" class="rowCount"></span>
+
+                    <img class="closed" src="//codeforces.com/codeforces.org/s/23517/images/icons/magnifier-medium.png">
+
+                    <span class="filter" style="display:none;">
+                        <img class="opened" src="//codeforces.com/codeforces.org/s/23517/images/icons/control-270.png">
+                        <input style="padding:0 0 0 20px;position:relative;bottom:2px;border:1px solid #aaa;height:17px;font-size:1.3rem;">
+                    </span>
+                </div>
+            </div>
+            <div style="background-color: white;margin:0.3em 3px 0 3px;position:relative;">
+            <div class="ilt">&nbsp;</div>
+            <div class="irt">&nbsp;</div>
+            <table class="">
+                <thead>
+                <tr>
+                    <th draggable="true" class="top left right">Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="no-items visible"><td style="text-align:left;" colspan="32" class="bottom dark left right">No items</td></tr></tbody>
+            </table>
+            </div>
+        </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+                // Create new ':containsIgnoreCase' selector for search
+                jQuery.expr[':'].containsIgnoreCase = function(a, i, m) {
+                    return jQuery(a).text().toUpperCase()
+                            .indexOf(m[3].toUpperCase()) >= 0;
+                };
+
+                if (window.updateDatatableFilter == undefined) {
+                    window.updateDatatableFilter = function(i) {
+                        var parent = $(i).parent().parent().parent().parent();
+                        $("tr.no-items", parent).remove();
+                        $("tr", parent).hide().removeClass('visible');
+                        var text = $(i).val();
+                        if (text) {
+                            $("tr" + ":containsIgnoreCase('" + text + "')", parent).show().addClass('visible');
+                        } else {
+                            parent.find(".rowCount").text("");
+                            $("tr", parent).show().addClass('visible');
+                        }
+
+                        var found = false;
+                        var visibleRowCount = 0;
+                        $("tr", parent).each(function () {
+                            if (!found) {
+                                if ($(this).find("th").size() > 0) {
+                                    $(this).show().addClass('visible');
+                                    found = true;
+                                }
+                            }
+                            if ($(this).hasClass('visible')) {
+                                visibleRowCount++;
+                            }
+                        });
+                        if (text) {
+                            parent.find(".rowCount").text("Matches: " + (visibleRowCount - (found ? 1 : 0)));
+                        }
+                        if (visibleRowCount == (found ? 1 : 0)) {
+                            $("<tr class='no-items visible'><td style=\"text-align:left;\"colspan=\"32\">No items<\/td><\/tr>").appendTo($(parent).find('table'));
+                        }
+                        $(parent).find("tr td").removeClass("dark");
+                        $(parent).find("tr.visible:odd td").addClass("dark");
+                    }
+
+                    $(".datatable .closed").click(function () {
+                        var parent = $(this).parent();
+                        $(this).hide();
+                        $(".filter", parent).fadeIn(function () {
+                            $("input", parent).val("").focus().css("border", "1px solid #aaa");
+                        });
+                    });
+
+                    $(".datatable .opened").click(function () {
+                        var parent = $(this).parent().parent();
+                        $(".filter", parent).fadeOut(function () {
+                            $(".closed", parent).show();
+                            $("input", parent).val("").each(function () {
+                                window.updateDatatableFilter(this);
+                            });
+                        });
+                    });
+
+                    $(".datatable .filter input").keyup(function(e) {
+                        window.updateDatatableFilter(this);
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+
+                    $(".datatable table").each(function () {
+                        var found = false;
+                        $("tr", this).each(function () {
+                            if (!found && $(this).find("th").size() == 0) {
+                                found = true;
+                            }
+                        });
+                        if (!found) {
+                            $("<tr class='no-items visible'><td style=\"text-align:left;\"colspan=\"32\">No items<\/td><\/tr>").appendTo(this);
+                        }
+                    });
+
+                    // Applies styles to datatables.
+                    $(".datatable").each(function () {
+                        $(this).find("tr:first th").addClass("top");
+                        $(this).find("tr:last td").addClass("bottom");
+                        $(this).find("tr:odd td").addClass("dark");
+                        $(this).find("tr td:first-child, tr th:first-child").addClass("left");
+                        $(this).find("tr td:last-child, tr th:last-child").addClass("right");
+                    });
+
+                    $(".datatable table.tablesorter").each(function () {
+                        $(this).bind("sortEnd", function () {
+                            $(".datatable").each(function () {
+                                $(this).find("th, td")
+                                    .removeClass("top").removeClass("bottom")
+                                    .removeClass("left").removeClass("right")
+                                    .removeClass("dark");
+                                $(this).find("tr:first th").addClass("top");
+                                $(this).find("tr:last td").addClass("bottom");
+                                $(this).find("tr:odd td").addClass("dark");
+                                $(this).find("tr td:first-child, tr th:first-child").addClass("left");
+                                $(this).find("tr td:last-child, tr th:last-child").addClass("right");
+                            });
+                        });
+                    });
+                }
+        });
+    </script>
+        </div>
+    </div>
+    <script type="application/javascript">
+        $(function() {
+            $(".userListMarker").click(function() {
+                $.post("/data/lists", {action: "findTouched"}, function(json) {
+                    Codeforces.facebox(".userListsFacebox");
+                    var tbody = $("#facebox tbody");
+                    tbody.empty();
+                    for (var i in json) {
+                        tbody.append(
+                            $("<tr></tr>").append(
+                                $("<td></td>").attr("data-readKey", json[i].readKey).text(json[i].name)
+                            )
+                        );
+                    }
+                    Codeforces.updateDatatables();
+                    tbody.find("td").css("cursor", "pointer").click(function() {
+                        document.location = Codeforces.updateUrlParameter(document.location.href, "list", $(this).attr("data-readKey"));
+                    });
+                }, "json");
+            });
+        });
+    </script>
+</div>
+    <script type="application/javascript">
+        if ('serviceWorker' in navigator && 'fetch' in window && 'caches' in window) {
+            navigator.serviceWorker.register('/service-worker-23517.js')
+                .then(function (registration) {
+                    console.log('Service worker registered: ', registration);
+                })
+                .catch(function (error) {
+                    console.log('Registration failed: ', error);
+                });
+        }
+    </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;316c29dfa3804effb5a91c52a59b5bd0&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+<div id="datepick-div" style="display: none;"></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="display: none; padding-bottom: 42px; padding-right: 42px;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden; float: left;"></div><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><div id="cboxNext" style="float: left;"></div><div id="cboxPrevious" style="float: left;"></div><div id="cboxSlideshow" style="float: left;"></div><div id="cboxClose" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div><div id="jGrowl" class="bottom-right jGrowl"><div class="jGrowl-notification"></div><div class="jGrowl-notification default" style="display: block;"><div class="close">×</div><div class="header"></div><div class="message">You are not allowed to view the requested page</div></div></div><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; min-width: 0px; max-width: none; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_Size4, monospace;"></div></div></body></html>
