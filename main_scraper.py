@@ -48,7 +48,7 @@ USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
 ]
 
-def setup_driver(debug_port=9206):
+def setup_driver(debug_port=9403):
     """
     Conecteaza la un browser Chrome existent prin debugger.
     
@@ -298,17 +298,17 @@ def save_all_submissions(submissions, problemset_file_path, output_dir="results/
             # print(f"    ⏳ Waiting {delay:.1f}s before next request...")
             # time.sleep(delay)
             
-            # Pauza lunga dupa fiecare batch (inclusiv pentru cele skipped)
-            total_processed = processed + skipped
-            if total_processed > 0 and total_processed % batch_size == 0 and i < total - 1:
-                if not change_useragent:
-                    long_pause = random.uniform(long_pause_min, long_pause_max)
-                    print(f"\n{'─'*60}")
-                    print(f"🛑 BATCH PAUSE after {total_processed} submissions ({processed} new, {skipped} skipped)")
-                    print(f"   Progress: {i+1}/{total} ({(i+1)/total*100:.1f}%)")
-                    print(f"   Taking a long break: {long_pause:.0f}s ({long_pause/60:.1f} minutes)")
-                    print(f"{'─'*60}\n")
-                    time.sleep(long_pause)
+            # # Pauza lunga dupa fiecare batch (inclusiv pentru cele skipped)
+            # total_processed = processed + skipped
+            # if total_processed > 0 and total_processed % batch_size == 0 and i < total - 1:
+            #     if not change_useragent:
+            #         long_pause = random.uniform(long_pause_min, long_pause_max)
+            #         print(f"\n{'─'*60}")
+            #         print(f"🛑 BATCH PAUSE after {total_processed} submissions ({processed} new, {skipped} skipped)")
+            #         print(f"   Progress: {i+1}/{total} ({(i+1)/total*100:.1f}%)")
+            #         print(f"   Taking a long break: {long_pause:.0f}s ({long_pause/60:.1f} minutes)")
+            #         print(f"{'─'*60}\n")
+            #         time.sleep(long_pause)
             
             continue
         
@@ -523,7 +523,7 @@ def extract_code_solution_hints(driver, problemset_file, page_number,
     return output_file
 
 
-def process_problemset_file(problemset_file, page_number, debug_port=9206,
+def process_problemset_file(problemset_file, page_number, debug_port=9403,
                            chrome_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
                            user_data_dir="C:\\chrome_debug_temp"):
     """
@@ -590,6 +590,9 @@ def process_problemset_file(problemset_file, page_number, debug_port=9206,
     print(f"\n" + "="*80)
     print(f"PROCEEDING TO STAGE 2: Extract Code, Solution, Hints")
     print("="*80)
+
+    # Extrago lista de probleme din fisierul problemset - pentru comparatie cu JSON
+    problems_dict = extract_problems_from_html(problemset_file)
     
     # Check daca ETAPA 2 e deja complete
     output_file = os.path.join("code_solution_hints_folder", f"code_solution_hints_{page_number}.json")
@@ -597,11 +600,21 @@ def process_problemset_file(problemset_file, page_number, debug_port=9206,
         try:
             with open(output_file, 'r', encoding='utf-8') as f:
                 existing_data = json.load(f)
-            if len(existing_data) > 0:
+            # if len(existing_data) > 0:
+            #     print(f"✅ ETAPA 2 already completed!")
+            #     print(f"   Found {len(existing_data)} problems extracted")
+            #     print(f"   Skipping extraction for page {page_number}...\n")
+            #     return
+            # Verifica daca TOATE problemele au fost procesate
+            if len(existing_data) == len(problems_dict):
                 print(f"✅ ETAPA 2 already completed!")
-                print(f"   Found {len(existing_data)} problems extracted")
+                print(f"   Found {len(existing_data)}/{len(problems_dict)} problems extracted")
                 print(f"   Skipping extraction for page {page_number}...\n")
                 return
+            else:
+                print(f"⚠️  ETAPA 2 INCOMPLETE!")
+                print(f"   Found {len(existing_data)} / {len(problems_dict)} problems")
+                print(f"   Continuing extraction...\n")
         except:
             pass
     
@@ -634,7 +647,7 @@ def process_problemset_file(problemset_file, page_number, debug_port=9206,
 if __name__ == "__main__":
     try:
         # Configurare
-        DEBUG_PORT_START = 9206
+        DEBUG_PORT_START = 9403
         CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
         USER_DATA_DIR = "C:\\chrome_debug_temp"
         PROBLEMSET_PAGES_DIR = "problemset_pages"
@@ -666,7 +679,7 @@ if __name__ == "__main__":
             debug_port = DEBUG_PORT_START
             
             try:
-                process_problemset_file(problemset_file, i + 3, debug_port, CHROME_PATH, USER_DATA_DIR)
+                process_problemset_file(problemset_file, i + 5, debug_port, CHROME_PATH, USER_DATA_DIR)
             except Exception as e:
                 print(f"\n❌ Error processing {problemset_file}:")
                 print(f"   {str(e)}")
