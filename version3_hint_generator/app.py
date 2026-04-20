@@ -382,7 +382,7 @@ with right:
 
     with btn_col1:
         general_type = "primary" if hint_mode == "general" else "secondary"
-        if st.button("🔍  General Hints", use_container_width=True, type=general_type):
+        if st.button("General Hints", use_container_width=True, type=general_type):
             _reset_flow()
             st.session_state["current_problem_id"] = selected_problem_id
             st.session_state["hint_mode"] = "general"
@@ -391,7 +391,7 @@ with right:
 
     with btn_col2:
         specific_type = "primary" if hint_mode == "specific" else "secondary"
-        if st.button("🎯  Specific Hints", use_container_width=True, type=specific_type):
+        if st.button("Specific Hints", use_container_width=True, type=specific_type):
             _reset_flow()
             st.session_state["current_problem_id"] = selected_problem_id
             st.session_state["hint_mode"] = "specific"
@@ -670,15 +670,13 @@ with right:
         st.info("Choose a hint mode above to begin.")
         st.markdown(
             """
-**🔍 General Hints** — The system extracts key concepts from the problem's editorial,
+**General Hints** — The system extracts key concepts from the problem's editorial,
 then asks you binary questions (`Yes / No`) to find which concept you're missing,
 and generates 2 targeted hints for that concept.
 
-**🎯 Specific Hints** — Select (or paste) a wrong submission.
+**Specific Hints** — Select (or paste) a wrong submission.
 The system analyses your code against the official solution to automatically
 identify the missing concept, then generates 2 hints pinpointed to your specific mistake.
 
-Both modes collect **ok / not ok** ratings that build a preference-pair dataset
-for reward-model training (RLHF pipeline).
             """
         )
