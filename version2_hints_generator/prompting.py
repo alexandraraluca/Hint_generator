@@ -78,10 +78,12 @@ Input JSON:
 Return strict JSON:
 {{
   "hints": [
-    {{"text": "..."}},
-    {{"text": "..."}},
-    {{"text": "..."}}
+        "...",
+        "...",
+        "..."
   ]
 }}
+
+Do not include any text before or after the JSON.
 """.strip()
     return prompt, payload_json
