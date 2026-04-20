@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import html
+import re
+
 import streamlit as st
 
 from config import N_HINTS
@@ -22,6 +25,47 @@ def _display_value(value: object) -> str:
     return text
 
 
+def _normalize_statement(value: object) -> str:
+    text = str(value or "").replace("\r\n", "\n").strip()
+    if not text:
+        return ""
+
+    # Dataset statements often come tokenized line-by-line; merge lines into readable paragraphs.
+    lines = [line.strip() for line in text.splitlines()]
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for line in lines:
+        if line:
+            current.append(line)
+            continue
+        if current:
+            paragraphs.append(" ".join(current))
+            current = []
+    if current:
+        paragraphs.append(" ".join(current))
+
+    normalized = "\n\n".join(paragraphs)
+    normalized = re.sub(r"[ \t]+", " ", normalized).strip()
+    return normalized
+
+
+def _render_statement(statement: object) -> None:
+    normalized = _normalize_statement(statement)
+    if not normalized:
+        st.markdown("_No statement available_")
+        return
+
+    safe_statement = html.escape(normalized).replace("\n\n", "<br><br>")
+    st.markdown(
+        (
+            "<div style='font-size: 1rem; line-height: 1.6;'>"
+            f"{safe_statement}"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+
+
 st.set_page_config(page_title="Version2 Hints Generator", layout="wide")
 st.title("Version2 Hints Generator")
 
@@ -34,7 +78,7 @@ with left:
     selected_problem_id = st.selectbox("Choose exercise:", problem_ids)
     problem = problems[selected_problem_id]
     st.subheader(f"Exercise: {problem.name or selected_problem_id}")
-    st.markdown(problem.statement or "_No statement available_")
+    _render_statement(problem.statement)
 
     problem_submissions = submissions_for_problem(selected_problem_id)
     submission_map = {f"{s.submission_id} ({s.verdict})": s for s in problem_submissions[:200]}
